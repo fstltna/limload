@@ -1,0 +1,113 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-10-13 00:45+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../../src/skirmish/genk/__init__.py:17
+msgid "Mission objectives completed."
+msgstr ""
+
+#: ../../../src/skirmish/genk/__init__.py:19
+msgid "Mission failed."
+msgstr ""
+
+#: ../../../src/skirmish/genk/__init__.py:21
+msgid "Bonus objective completed."
+msgstr ""
+
+#: ../../../src/skirmish/genk/avalanche.py:12
+msgctxt "mission name"
+msgid "Avalanche"
+msgstr ""
+
+#: ../../../src/skirmish/genk/avalanche.py:14
+msgctxt "mission description"
+msgid ""
+"\n"
+"Ground attack mission. A group of enemy vehicles is spotted in the area. It consists mostly of lightly armored IFVs, but some MBTs are reported too. To complete the task you must destroy the whole group. While vehicles themselves are defenseless against attack from air, keep in mind that enemy infantry, armed with Stingers, is scattered through surrounding hills.\n"
+"\n"
+"Primary objectives:\n"
+"- Destroy all enemy vehicles.\n"
+"\n"
+"Bonus objectives:\n"
+"- None.\n"
+"\n"
+msgstr ""
+
+#: ../../../src/skirmish/genk/avalanche.py:121
+msgid "waypoint 1"
+msgstr ""
+
+#: ../../../src/skirmish/genk/avalanche.py:121
+msgid "WP1"
+msgstr ""
+
+#: ../../../src/skirmish/genk/avalanche.py:131
+msgid "Destroy enemy armor below."
+msgstr ""
+
+#: ../../../src/skirmish/genk/avalanche.py:132
+msgid "Watch out for Stingers!"
+msgstr ""
+
+#: ../../../src/skirmish/genk/avalanche.py:152
+msgid "Enemy armor group destroyed."
+msgstr ""
+
+#: ../../../src/skirmish/genk/avalanche.py:153
+#: ../../../src/skirmish/genk/incoming.py:184
+msgid "Good work."
+msgstr ""
+
+#: ../../../src/skirmish/genk/incoming.py:12
+msgctxt "mission name"
+msgid "Incoming"
+msgstr ""
+
+#: ../../../src/skirmish/genk/incoming.py:14
+msgctxt "mission description"
+msgid ""
+"\n"
+"A true dogfight mission. The enemy will be coming in waves, one after another. You never know how many or which type of aircraft is going to hunt you next. To win, you must survive and destroy each wave.\n"
+"\n"
+"Primary objectives:\n"
+"- Shoot down all enemy planes.\n"
+"\n"
+"Bonus objectives:\n"
+"- Do not fire any missiles.\n"
+"\n"
+msgstr ""
+
+#: ../../../src/skirmish/genk/incoming.py:104
+msgid "Incoming enemy planes!"
+msgstr ""
+
+#: ../../../src/skirmish/genk/incoming.py:105
+msgid "Good luck!"
+msgstr ""
+
+#: ../../../src/skirmish/genk/incoming.py:179
+msgid "All enemy planes destroyed."
+msgstr ""
+
+#: ../../../src/skirmish/genk/incoming.py:181
+msgid "No missile was fired."
+msgstr ""
+
+#: ../../../src/skirmish/genk/incoming.py:182
+msgid "Excellent work."
+msgstr ""

@@ -1,0 +1,12 @@
+#!/bin/sh
+
+build_env=winmsvc
+
+envsep=";"
+
+python_cmd=python
+python_inc_dir="c:/program files/python27/include"
+python_lib_dir="c:/program files/python27/libs"
+eigen_inc_dir=f:/projects/panda3d-deval/panda3d/thirdparty/win-libs-vc10-x64/eigen/include
+panda_inc_dir=f:/programs/panda3D-1.9.0-x64/include
+panda_lib_dir=f:/programs/panda3D-1.9.0-x64/lib

@@ -1,0 +1,384 @@
+1430662706
+2 3
+10 libpandaai 4 s1eG 10 panda3d.ai 
+51
+74 12 ~AIBehaviors 0 4 125 25 AIBehaviors::~AIBehaviors 0 0 0
+32
+AIBehaviors::~AIBehaviors(void);
+
+75 4 seek 0 4 125 17 AIBehaviors::seek 0 4 1 2 3 4 0
+129
+void AIBehaviors::seek(NodePath target_object, float seek_wt = (1));
+void AIBehaviors::seek(LVecBase3f pos, float seek_wt = (1));
+
+76 4 flee 0 4 125 17 AIBehaviors::flee 0 8 5 6 7 8 9 10 11 12 0
+249
+void AIBehaviors::flee(NodePath target_object, double panic_distance = (10), double relax_distance = (10), float flee_wt = (1));
+void AIBehaviors::flee(LVecBase3f pos, double panic_distance = (10), double relax_distance = (10), float flee_wt = (1));
+
+77 6 pursue 0 4 125 19 AIBehaviors::pursue 0 2 13 14 0
+72
+void AIBehaviors::pursue(NodePath target_object, float pursue_wt = (1));
+
+78 5 evade 0 4 125 18 AIBehaviors::evade 0 4 15 16 17 18 0
+130
+void AIBehaviors::evade(NodePath target_object, double panic_distance = (10), double relax_distance = (10), float evade_wt = (1));
+
+79 7 arrival 0 4 125 20 AIBehaviors::arrival 0 2 19 20 0
+50
+void AIBehaviors::arrival(double distance = (10));
+
+80 5 flock 0 4 125 18 AIBehaviors::flock 0 1 21 0
+40
+void AIBehaviors::flock(float flock_wt);
+
+81 6 wander 0 4 125 19 AIBehaviors::wander 0 5 22 23 24 25 26 0
+114
+void AIBehaviors::wander(double wander_radius = (5), int flag = (0), double aoe = (0), float wander_weight = (1));
+
+82 18 obstacle_avoidance 0 4 125 31 AIBehaviors::obstacle_avoidance 0 2 27 28 0
+64
+void AIBehaviors::obstacle_avoidance(float feeler_length = (1));
+
+83 11 path_follow 0 4 125 24 AIBehaviors::path_follow 0 1 29 0
+47
+void AIBehaviors::path_follow(float follow_wt);
+
+84 11 add_to_path 0 4 125 24 AIBehaviors::add_to_path 0 1 30 0
+46
+void AIBehaviors::add_to_path(LVecBase3f pos);
+
+85 12 start_follow 0 4 125 25 AIBehaviors::start_follow 0 2 31 32 0
+71
+void AIBehaviors::start_follow(basic_string< char > type = ("normal"));
+
+86 14 init_path_find 0 4 125 27 AIBehaviors::init_path_find 0 1 33 40
+// should have different function names.
+63
+void AIBehaviors::init_path_find(char const *navmesh_filename);
+
+87 12 path_find_to 0 4 125 25 AIBehaviors::path_find_to 0 4 34 35 36 37 0
+176
+void AIBehaviors::path_find_to(LVecBase3f pos, basic_string< char > type = ("normal"));
+void AIBehaviors::path_find_to(NodePath target, basic_string< char > type = ("normal"));
+
+88 19 add_static_obstacle 0 4 125 32 AIBehaviors::add_static_obstacle 0 1 38 0
+57
+void AIBehaviors::add_static_obstacle(NodePath obstacle);
+
+89 20 add_dynamic_obstacle 0 4 125 33 AIBehaviors::add_dynamic_obstacle 0 1 39 0
+58
+void AIBehaviors::add_dynamic_obstacle(NodePath obstacle);
+
+90 9 remove_ai 0 4 125 22 AIBehaviors::remove_ai 0 1 40 21
+//add for path follow
+58
+void AIBehaviors::remove_ai(basic_string< char > ai_type);
+
+91 8 pause_ai 0 4 125 21 AIBehaviors::pause_ai 0 1 41 21
+//add for path follow
+57
+void AIBehaviors::pause_ai(basic_string< char > ai_type);
+
+92 9 resume_ai 0 4 125 22 AIBehaviors::resume_ai 0 1 42 0
+58
+void AIBehaviors::resume_ai(basic_string< char > ai_type);
+
+93 15 behavior_status 0 4 125 28 AIBehaviors::behavior_status 0 1 43 0
+80
+basic_string< char > AIBehaviors::behavior_status(basic_string< char > ai_type);
+
+94 8 get_mass 0 4 126 21 AICharacter::get_mass 0 1 45 0
+35
+double AICharacter::get_mass(void);
+
+95 8 set_mass 0 4 126 21 AICharacter::set_mass 0 1 46 0
+37
+void AICharacter::set_mass(double m);
+
+96 12 get_velocity 0 4 126 25 AICharacter::get_velocity 0 1 47 0
+43
+LVecBase3f AICharacter::get_velocity(void);
+
+97 13 get_max_force 0 4 126 26 AICharacter::get_max_force 0 1 48 0
+40
+double AICharacter::get_max_force(void);
+
+98 13 set_max_force 0 4 126 26 AICharacter::set_max_force 0 1 49 0
+50
+void AICharacter::set_max_force(double max_force);
+
+99 13 get_node_path 0 4 126 26 AICharacter::get_node_path 0 1 50 0
+42
+NodePath AICharacter::get_node_path(void);
+
+100 13 set_node_path 0 4 126 26 AICharacter::set_node_path 0 1 51 0
+45
+void AICharacter::set_node_path(NodePath np);
+
+101 16 get_ai_behaviors 0 4 126 29 AICharacter::get_ai_behaviors 0 1 52 0
+49
+AIBehaviors *AICharacter::get_ai_behaviors(void);
+
+102 12 set_pf_guide 0 4 126 25 AICharacter::set_pf_guide 0 1 53 74
+// This function is used to enable or disable the guides for path finding.
+46
+void AICharacter::set_pf_guide(bool pf_guide);
+
+103 11 AICharacter 0 4 126 24 AICharacter::AICharacter 0 1 44 0
+127
+AICharacter::AICharacter(basic_string< char > model_name, NodePath model_np, double mass, double movt_force, double max_force);
+
+104 12 ~AICharacter 0 4 126 25 AICharacter::~AICharacter 0 0 0
+32
+AICharacter::~AICharacter(void);
+
+105 6 AINode 0 4 127 14 AINode::AINode 0 1 54 0
+82
+AINode::AINode(int grid_x, int grid_y, LVecBase3f pos, float w, float l, float h);
+
+106 7 ~AINode 0 4 127 15 AINode::~AINode 0 0 0
+22
+AINode::~AINode(void);
+
+107 8 contains 0 4 127 16 AINode::contains 0 1 55 297
+////////////////////////////////////////////////////////////////////
+//     Function: contains
+//  Description: This is a handy function which returns true if the
+//               passed position is within the node's dimensions.
+////////////////////////////////////////////////////////////////////
+40
+bool AINode::contains(float x, float y);
+
+108 5 Flock 0 4 128 12 Flock::Flock 0 4 56 57 58 59 0
+176
+Flock::Flock(unsigned int flock_id, double vcone_angle, double vcone_radius, unsigned int separation_wt = (2), unsigned int cohesion_wt = (4), unsigned int alignment_wt = (1));
+
+109 6 ~Flock 0 4 128 13 Flock::~Flock 0 0 0
+20
+Flock::~Flock(void);
+
+110 11 add_ai_char 0 4 128 18 Flock::add_ai_char 0 1 60 54
+// Function to add the ai characters to _ai_char_list.
+46
+void Flock::add_ai_char(AICharacter *ai_char);
+
+111 6 get_id 0 4 128 13 Flock::get_id 0 1 61 50
+// Function to access the private member flock_id.
+33
+unsigned int Flock::get_id(void);
+
+112 7 AIWorld 0 4 129 16 AIWorld::AIWorld 0 1 62 0
+34
+AIWorld::AIWorld(NodePath render);
+
+113 8 ~AIWorld 0 4 129 17 AIWorld::~AIWorld 0 0 0
+24
+AIWorld::~AIWorld(void);
+
+114 11 add_ai_char 0 4 129 20 AIWorld::add_ai_char 0 1 63 0
+46
+void AIWorld::add_ai_char(AICharacter *ai_ch);
+
+115 14 remove_ai_char 0 4 129 23 AIWorld::remove_ai_char 0 1 64 0
+56
+void AIWorld::remove_ai_char(basic_string< char > name);
+
+116 9 add_flock 0 4 129 18 AIWorld::add_flock 0 1 65 0
+38
+void AIWorld::add_flock(Flock *flock);
+
+117 9 flock_off 0 4 129 18 AIWorld::flock_off 0 1 66 0
+47
+void AIWorld::flock_off(unsigned int flock_id);
+
+118 8 flock_on 0 4 129 17 AIWorld::flock_on 0 1 67 0
+46
+void AIWorld::flock_on(unsigned int flock_id);
+
+119 12 remove_flock 0 4 129 21 AIWorld::remove_flock 0 1 68 0
+50
+void AIWorld::remove_flock(unsigned int flock_id);
+
+120 9 get_flock 0 4 129 18 AIWorld::get_flock 0 1 69 0
+48
+Flock AIWorld::get_flock(unsigned int flock_id);
+
+121 12 add_obstacle 0 4 129 21 AIWorld::add_obstacle 0 1 70 0
+46
+void AIWorld::add_obstacle(NodePath obstacle);
+
+122 15 remove_obstacle 0 4 129 24 AIWorld::remove_obstacle 0 1 71 0
+49
+void AIWorld::remove_obstacle(NodePath obstacle);
+
+123 10 print_list 0 4 129 19 AIWorld::print_list 0 1 72 0
+31
+void AIWorld::print_list(void);
+
+124 6 update 0 4 129 15 AIWorld::update 0 1 73 0
+27
+void AIWorld::update(void);
+
+73
+1 14 Dtool_s1eGdicZ 0 4 3 134 0 14 Dtool_s1eGdicZ 0 3 4 this 3 130  3 pos 1 131  7 seek_wt 1 133  
+2 14 Dtool_s1eGJAbG 0 4 3 134 0 14 Dtool_s1eGJAbG 0 2 4 this 3 130  3 pos 1 131  
+3 14 Dtool_s1eG1j_A 0 4 3 134 0 14 Dtool_s1eG1j_A 0 3 4 this 3 130  13 target_object 1 135  7 seek_wt 1 133  
+4 14 Dtool_s1eGHlTn 0 4 3 134 0 14 Dtool_s1eGHlTn 0 2 4 this 3 130  13 target_object 1 135  
+5 14 Dtool_s1eGaOeG 0 4 4 134 0 14 Dtool_s1eGaOeG 0 5 4 this 3 130  3 pos 1 131  14 panic_distance 1 137  14 relax_distance 1 137  7 flee_wt 1 133  
+6 14 Dtool_s1eGQpF_ 0 4 4 134 0 14 Dtool_s1eGQpF_ 0 4 4 this 3 130  3 pos 1 131  14 panic_distance 1 137  14 relax_distance 1 137  
+7 14 Dtool_s1eG1IQo 0 4 4 134 0 14 Dtool_s1eG1IQo 0 3 4 this 3 130  3 pos 1 131  14 panic_distance 1 137  
+8 14 Dtool_s1eG1zrL 0 4 4 134 0 14 Dtool_s1eG1zrL 0 2 4 this 3 130  3 pos 1 131  
+9 14 Dtool_s1eGC4Ws 0 4 4 134 0 14 Dtool_s1eGC4Ws 0 5 4 this 3 130  13 target_object 1 135  14 panic_distance 1 137  14 relax_distance 1 137  7 flee_wt 1 133  
+10 14 Dtool_s1eGJcm3 0 4 4 134 0 14 Dtool_s1eGJcm3 0 4 4 this 3 130  13 target_object 1 135  14 panic_distance 1 137  14 relax_distance 1 137  
+11 14 Dtool_s1eG3i_R 0 4 4 134 0 14 Dtool_s1eG3i_R 0 3 4 this 3 130  13 target_object 1 135  14 panic_distance 1 137  
+12 14 Dtool_s1eG38is 0 4 4 134 0 14 Dtool_s1eG38is 0 2 4 this 3 130  13 target_object 1 135  
+13 14 Dtool_s1eGjcbc 0 4 5 134 0 14 Dtool_s1eGjcbc 0 3 4 this 3 130  13 target_object 1 135  9 pursue_wt 1 133  
+14 14 Dtool_s1eG0cZJ 0 4 5 134 0 14 Dtool_s1eG0cZJ 0 2 4 this 3 130  13 target_object 1 135  
+15 14 Dtool_s1eGaJMk 0 4 6 134 0 14 Dtool_s1eGaJMk 0 5 4 this 3 130  13 target_object 1 135  14 panic_distance 1 137  14 relax_distance 1 137  8 evade_wt 1 133  
+16 14 Dtool_s1eGE28L 0 4 6 134 0 14 Dtool_s1eGE28L 0 4 4 this 3 130  13 target_object 1 135  14 panic_distance 1 137  14 relax_distance 1 137  
+17 14 Dtool_s1eGqtSX 0 4 6 134 0 14 Dtool_s1eGqtSX 0 3 4 this 3 130  13 target_object 1 135  14 panic_distance 1 137  
+18 14 Dtool_s1eGlkbo 0 4 6 134 0 14 Dtool_s1eGlkbo 0 2 4 this 3 130  13 target_object 1 135  
+19 14 Dtool_s1eG_TuJ 0 4 7 134 0 14 Dtool_s1eG_TuJ 0 2 4 this 3 130  8 distance 1 137  
+20 14 Dtool_s1eGYiIf 0 4 7 134 0 14 Dtool_s1eGYiIf 0 1 4 this 3 130  
+21 14 Dtool_s1eGBM3o 0 4 8 134 0 14 Dtool_s1eGBM3o 0 2 4 this 3 130  8 flock_wt 1 133  
+22 14 Dtool_s1eGQlxz 0 4 9 134 0 14 Dtool_s1eGQlxz 0 5 4 this 3 130  13 wander_radius 1 137  4 flag 1 138  3 aoe 1 137  13 wander_weight 1 133  
+23 14 Dtool_s1eG4Tnv 0 4 9 134 0 14 Dtool_s1eG4Tnv 0 4 4 this 3 130  13 wander_radius 1 137  4 flag 1 138  3 aoe 1 137  
+24 14 Dtool_s1eGQQtk 0 4 9 134 0 14 Dtool_s1eGQQtk 0 3 4 this 3 130  13 wander_radius 1 137  4 flag 1 138  
+25 14 Dtool_s1eGUd__ 0 4 9 134 0 14 Dtool_s1eGUd__ 0 2 4 this 3 130  13 wander_radius 1 137  
+26 14 Dtool_s1eGbSqp 0 4 9 134 0 14 Dtool_s1eGbSqp 0 1 4 this 3 130  
+27 14 Dtool_s1eGdK_A 0 4 10 134 0 14 Dtool_s1eGdK_A 0 2 4 this 3 130  13 feeler_length 1 133  
+28 14 Dtool_s1eGrujs 0 4 10 134 0 14 Dtool_s1eGrujs 0 1 4 this 3 130  
+29 14 Dtool_s1eGZSK2 0 4 11 134 0 14 Dtool_s1eGZSK2 0 2 4 this 3 130  9 follow_wt 1 133  
+30 14 Dtool_s1eGtX_U 0 4 12 134 0 14 Dtool_s1eGtX_U 0 2 4 this 3 130  3 pos 1 131  
+31 14 Dtool_s1eGx48R 0 4 13 134 0 14 Dtool_s1eGx48R 0 2 4 this 3 130  4 type 1 139  
+32 14 Dtool_s1eGRqch 0 4 13 134 0 14 Dtool_s1eGRqch 0 1 4 this 3 130  
+33 14 Dtool_s1eG2URf 0 4 14 134 0 14 Dtool_s1eG2URf 40 // should have different function names. 2 4 this 3 130  16 navmesh_filename 1 139  
+34 14 Dtool_s1eGAAa5 0 4 15 134 0 14 Dtool_s1eGAAa5 0 3 4 this 3 130  3 pos 1 131  4 type 1 139  
+35 14 Dtool_s1eG7NZ3 0 4 15 134 0 14 Dtool_s1eG7NZ3 0 2 4 this 3 130  3 pos 1 131  
+36 14 Dtool_s1eGxxB6 0 4 15 134 0 14 Dtool_s1eGxxB6 0 3 4 this 3 130  6 target 1 135  4 type 1 139  
+37 14 Dtool_s1eGCbBn 0 4 15 134 0 14 Dtool_s1eGCbBn 0 2 4 this 3 130  6 target 1 135  
+38 14 Dtool_s1eGHUqd 0 4 16 134 0 14 Dtool_s1eGHUqd 0 2 4 this 3 130  8 obstacle 1 135  
+39 14 Dtool_s1eGKVVx 0 4 17 134 0 14 Dtool_s1eGKVVx 0 2 4 this 3 130  8 obstacle 1 135  
+40 14 Dtool_s1eGonnz 0 4 18 134 0 14 Dtool_s1eGonnz 21 //add for path follow 2 4 this 3 130  7 ai_type 1 139  
+41 14 Dtool_s1eGpA6j 0 4 19 134 0 14 Dtool_s1eGpA6j 21 //add for path follow 2 4 this 3 130  7 ai_type 1 139  
+42 14 Dtool_s1eGPV3T 0 4 20 134 0 14 Dtool_s1eGPV3T 0 2 4 this 3 130  7 ai_type 1 139  
+43 14 Dtool_s1eG1JTC 0 6 21 139 0 14 Dtool_s1eG1JTC 0 2 4 this 3 130  7 ai_type 1 139  
+44 14 Dtool_s1eGgjUI 0 7 32 140 104 14 Dtool_s1eGgjUI 0 5 10 model_name 1 139  8 model_np 1 135  4 mass 1 137  10 movt_force 1 137  9 max_force 1 137  
+45 14 Dtool_s1eGckM8 0 6 23 137 0 14 Dtool_s1eGckM8 0 1 4 this 3 140  
+46 14 Dtool_s1eG7Wc5 0 4 24 134 0 14 Dtool_s1eG7Wc5 0 2 4 this 3 140  1 m 1 137  
+47 14 Dtool_s1eG9oVk 0 7 25 131 0 14 Dtool_s1eG9oVk 0 1 4 this 3 140  
+48 14 Dtool_s1eGKdq_ 0 6 26 137 0 14 Dtool_s1eGKdq_ 0 1 4 this 3 140  
+49 14 Dtool_s1eGG3OP 0 4 27 134 0 14 Dtool_s1eGG3OP 0 2 4 this 3 140  9 max_force 1 137  
+50 14 Dtool_s1eGK3xG 0 7 28 135 0 14 Dtool_s1eGK3xG 0 1 4 this 3 140  
+51 14 Dtool_s1eGyGvu 0 4 29 134 0 14 Dtool_s1eGyGvu 0 2 4 this 3 140  2 np 1 135  
+52 14 Dtool_s1eG29sm 0 6 30 130 0 14 Dtool_s1eG29sm 0 1 4 this 3 140  
+53 14 Dtool_s1eG3DR9 0 4 31 134 0 14 Dtool_s1eG3DR9 74 // This function is used to enable or disable the guides for path finding. 2 4 this 3 140  8 pf_guide 1 141  
+54 14 Dtool_s1eGojZp 0 7 35 142 106 14 Dtool_s1eGojZp 0 6 6 grid_x 1 138  6 grid_y 1 138  3 pos 1 131  1 w 1 133  1 l 1 133  1 h 1 133  
+55 14 Dtool_s1eGl_Pf 0 6 37 141 0 14 Dtool_s1eGl_Pf 297 ////////////////////////////////////////////////////////////////////
+//     Function: contains
+//  Description: This is a handy function which returns true if the
+//               passed position is within the node's dimensions.
+//////////////////////////////////////////////////////////////////// 3 4 this 3 142  1 x 1 133  1 y 1 133  
+56 14 Dtool_s1eG0aua 0 7 39 144 109 14 Dtool_s1eG0aua 0 6 8 flock_id 1 143  11 vcone_angle 1 137  12 vcone_radius 1 137  13 separation_wt 1 143  11 cohesion_wt 1 143  12 alignment_wt 1 143  
+57 14 Dtool_s1eGWk7X 0 7 39 144 109 14 Dtool_s1eGWk7X 0 5 8 flock_id 1 143  11 vcone_angle 1 137  12 vcone_radius 1 137  13 separation_wt 1 143  11 cohesion_wt 1 143  
+58 14 Dtool_s1eGBejM 0 7 39 144 109 14 Dtool_s1eGBejM 0 4 8 flock_id 1 143  11 vcone_angle 1 137  12 vcone_radius 1 137  13 separation_wt 1 143  
+59 14 Dtool_s1eG8pye 0 7 39 144 109 14 Dtool_s1eG8pye 0 3 8 flock_id 1 143  11 vcone_angle 1 137  12 vcone_radius 1 137  
+60 14 Dtool_s1eG90Ff 0 4 41 134 0 14 Dtool_s1eG90Ff 54 // Function to add the ai characters to _ai_char_list. 2 4 this 3 144  7 ai_char 1 140  
+61 14 Dtool_s1eG2K1M 0 6 42 143 0 14 Dtool_s1eG2K1M 50 // Function to access the private member flock_id. 1 4 this 3 144  
+62 14 Dtool_s1eGr2dt 0 7 44 145 113 14 Dtool_s1eGr2dt 0 1 6 render 1 135  
+63 14 Dtool_s1eGv5_b 0 4 46 134 0 14 Dtool_s1eGv5_b 0 2 4 this 3 145  5 ai_ch 1 140  
+64 14 Dtool_s1eGdIHd 0 4 47 134 0 14 Dtool_s1eGdIHd 0 2 4 this 3 145  4 name 1 139  
+65 14 Dtool_s1eGOP3p 0 4 48 134 0 14 Dtool_s1eGOP3p 0 2 4 this 3 145  5 flock 1 144  
+66 14 Dtool_s1eG5MNs 0 4 49 134 0 14 Dtool_s1eG5MNs 0 2 4 this 3 145  8 flock_id 1 143  
+67 14 Dtool_s1eGjgX4 0 4 50 134 0 14 Dtool_s1eGjgX4 0 2 4 this 3 145  8 flock_id 1 143  
+68 14 Dtool_s1eG_GUq 0 4 51 134 0 14 Dtool_s1eG_GUq 0 2 4 this 3 145  8 flock_id 1 143  
+69 14 Dtool_s1eGoKdU 0 7 52 144 109 14 Dtool_s1eGoKdU 0 2 4 this 3 145  8 flock_id 1 143  
+70 14 Dtool_s1eGKacp 0 4 53 134 0 14 Dtool_s1eGKacp 0 2 4 this 3 145  8 obstacle 1 135  
+71 14 Dtool_s1eG6XPj 0 4 54 134 0 14 Dtool_s1eG6XPj 0 2 4 this 3 145  8 obstacle 1 135  
+72 14 Dtool_s1eG71nt 0 4 55 134 0 14 Dtool_s1eG71nt 0 1 4 this 3 145  
+73 14 Dtool_s1eGAHA5 0 4 56 134 0 14 Dtool_s1eGAHA5 0 1 4 this 3 145  
+21
+125 11 AIBehaviors 0 26625 11 AIBehaviors 11 AIBehaviors 0 0 0 0 74 0 19 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 0 0 0 0 0 0
+
+126 11 AICharacter 0 26625 11 AICharacter 11 AICharacter 0 0 0 1 103 104 0 9 94 95 96 97 98 99 100 101 102 0 0 0 0 0 0
+
+127 6 AINode 0 26625 6 AINode 6 AINode 0 0 0 1 105 106 0 1 107 0 0 0 0 0 637
+////////////////////////////////////////////////////////////////////
+//       Class : AINode
+// Description : This class is used to assign the nodes on the mesh.
+//               It holds all the data necessary to compute A*
+//               algorithm. It also maintains a lot of vital
+//               information such as the neighbor nodes of each
+//               node and also its position on the mesh.
+//               Note: The Mesh Generator which is a standalone
+//               tool makes use of this class to generate the nodes
+//               on the mesh.
+////////////////////////////////////////////////////////////////////
+
+128 5 Flock 0 26625 5 Flock 5 Flock 0 0 0 1 108 109 0 2 110 111 0 0 0 0 0 0
+
+129 7 AIWorld 0 26625 7 AIWorld 7 AIWorld 0 0 0 1 112 113 0 11 114 115 116 117 118 119 120 121 122 123 124 0 0 0 0 0 0
+
+130 13 AIBehaviors * 0 8576 13 AIBehaviors * 13 AIBehaviors * 0 0 125 0 0 0 0 0 0 0 0 0 0
+
+131 12 LVecBase3f * 0 8576 12 LVecBase3f * 12 LVecBase3f * 0 0 132 0 0 0 0 0 0 0 0 0 0
+
+132 10 LVecBase3f 0 2048 10 LVecBase3f 10 LVecBase3f 0 0 0 0 0 0 0 0 0 0 0 0 265
+////////////////////////////////////////////////////////////////////
+//       Class : LVecBase3
+// Description : This is the base class for all three-component
+//               vectors and points.
+////////////////////////////////////////////////////////////////////
+
+133 5 float 0 8194 5 float 5 float 0 2 0 0 0 0 0 0 0 0 0 0 0
+
+134 4 void 0 8194 4 void 4 void 0 6 0 0 0 0 0 0 0 0 0 0 0
+
+135 10 NodePath * 0 8576 10 NodePath * 10 NodePath * 0 0 136 0 0 0 0 0 0 0 0 0 0
+
+136 8 NodePath 0 2048 8 NodePath 8 NodePath 0 0 0 0 0 0 0 2 146 147 0 0 0 0 1139
+////////////////////////////////////////////////////////////////////
+//       Class : NodePath
+// Description : NodePath is the fundamental system for disambiguating
+//               instances, and also provides a higher-level interface
+//               for manipulating the scene graph.
+//
+//               A NodePath is a list of connected nodes from the root
+//               of the graph to any sub-node.  Each NodePath
+//               therefore uniquely describes one instance of a node.
+//
+//               NodePaths themselves are lightweight objects that may
+//               easily be copied and passed by value.  Their data is
+//               stored as a series of NodePathComponents that are
+//               stored on the nodes.  Holding a NodePath will keep a
+//               reference count to all the nodes in the path.
+//               However, if any node in the path is removed or
+//               reparented (perhaps through a different NodePath),
+//               the NodePath will automatically be updated to reflect
+//               the changes.
+////////////////////////////////////////////////////////////////////
+
+137 6 double 0 8194 6 double 6 double 0 3 0 0 0 0 0 0 0 0 0 0 0
+
+138 3 int 0 8194 3 int 3 int 0 1 0 0 0 0 0 0 0 0 0 0 0
+
+139 13 atomic string 0 2 13 atomic string 13 atomic string 0 7 0 0 0 0 0 0 0 0 0 0 0
+
+140 13 AICharacter * 0 8576 13 AICharacter * 13 AICharacter * 0 0 126 0 0 0 0 0 0 0 0 0 0
+
+141 4 bool 0 8194 4 bool 4 bool 0 4 0 0 0 0 0 0 0 0 0 0 0
+
+142 8 AINode * 0 8576 8 AINode * 8 AINode * 0 0 127 0 0 0 0 0 0 0 0 0 0
+
+143 12 unsigned int 0 8198 12 unsigned int 12 unsigned int 0 1 0 0 0 0 0 0 0 0 0 0 0
+
+144 7 Flock * 0 8576 7 Flock * 7 Flock * 0 0 128 0 0 0 0 0 0 0 0 0 0
+
+145 9 AIWorld * 0 8576 9 AIWorld * 9 AIWorld * 0 0 129 0 0 0 0 0 0 0 0 0 0
+
+0
+0
+2
+146 0 0 66 9 get_nodes 13 get_num_nodes 8 get_node 
+147 0 0 66 13 get_ancestors 13 get_num_nodes 12 get_ancestor 

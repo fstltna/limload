@@ -1,0 +1,3237 @@
+1430659595
+2 3
+15 libp3downloader 4 _Rn_ 12 panda3d.core 
+183
+201 12 Decompressor 0 4 384 26 Decompressor::Decompressor 0 1 1 221
+////////////////////////////////////////////////////////////////////
+//     Function: Decompressor::Constructor
+//       Access: Public
+//  Description:
+////////////////////////////////////////////////////////////////////
+33
+Decompressor::Decompressor(void);
+
+202 13 ~Decompressor 0 4 384 27 Decompressor::~Decompressor 0 0 220
+////////////////////////////////////////////////////////////////////
+//     Function: Decompressor::Destructor
+//       Access: Public
+//  Description:
+////////////////////////////////////////////////////////////////////
+34
+Decompressor::~Decompressor(void);
+
+203 8 initiate 0 4 384 22 Decompressor::initiate 0 2 2 3 857
+////////////////////////////////////////////////////////////////////
+//     Function: Decompressor::initiate
+//       Access: Public
+//  Description: Begins a background decompression of the named file
+//               (whose filename must end in ".pz") to a new file
+//               without the .pz extension.  The source file is
+//               removed after successful completion.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: Decompressor::initiate
+//       Access: Public
+//  Description: Begins a background decompression from the named
+//               source file to the named destination file.  The
+//               source file is removed after successful completion.
+////////////////////////////////////////////////////////////////////
+140
+int Decompressor::initiate(Filename const &source_file);
+int Decompressor::initiate(Filename const &source_file, Filename const &dest_file);
+
+204 3 run 0 4 384 17 Decompressor::run 0 1 4 493
+////////////////////////////////////////////////////////////////////
+//     Function: Decompressor::run
+//       Access: Public
+//  Description: Called each frame to do the next bit of work in the
+//               background task.  Returns EU_ok if a chunk is
+//               completed but there is more to go, or EU_success when
+//               we're all done.  Any other return value indicates an
+//               error.
+////////////////////////////////////////////////////////////////////
+28
+int Decompressor::run(void);
+
+205 10 decompress 0 4 384 24 Decompressor::decompress 0 2 5 6 757
+////////////////////////////////////////////////////////////////////
+//     Function: Decompressor::decompress
+//       Access: Public
+//  Description: Performs a foreground decompression of the named
+//               file; does not return until the decompression is
+//               complete.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: Decompressor::decompress
+//       Access: Public
+//  Description: Does an in-memory decompression of the indicated
+//               Ramfile.  The decompressed contents are written back
+//               into the same Ramfile on completion.
+////////////////////////////////////////////////////////////////////
+121
+bool Decompressor::decompress(Filename const &source_file);
+bool Decompressor::decompress(Ramfile &source_and_dest_file);
+
+206 12 get_progress 0 4 384 26 Decompressor::get_progress 0 1 7 307
+////////////////////////////////////////////////////////////////////
+//     Function: Decompressor::get_progress
+//       Access: Public
+//  Description: Returns the ratio through the decompression step
+//               in the background.
+////////////////////////////////////////////////////////////////////
+45
+float Decompressor::get_progress(void) const;
+
+207 7 URLSpec 0 4 385 16 URLSpec::URLSpec 0 4 8 9 10 11 666
+////////////////////////////////////////////////////////////////////
+//     Function: URLSpec::Constructor
+//       Access: Published
+//  Description:
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: URLSpec::Copy Constructor
+//       Access: Published
+//  Description:
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: URLSpec::Constructor
+//       Access: Published
+//  Description:
+////////////////////////////////////////////////////////////////////
+160
+URLSpec::URLSpec(void);
+inline URLSpec::URLSpec(basic_string< char > const &url, bool server_name_expected = (0));
+inline URLSpec::URLSpec(URLSpec const &copy);
+
+208 10 operator = 0 4 385 19 URLSpec::operator = 0 2 12 13 0
+112
+inline void URLSpec::operator =(basic_string< char > const &url);
+void URLSpec::operator =(URLSpec const &copy);
+
+209 11 operator == 0 4 385 20 URLSpec::operator == 0 1 14 0
+61
+inline bool URLSpec::operator ==(URLSpec const &other) const;
+
+210 11 operator != 0 4 385 20 URLSpec::operator != 0 1 15 0
+61
+inline bool URLSpec::operator !=(URLSpec const &other) const;
+
+211 10 operator < 0 4 385 19 URLSpec::operator < 0 1 16 0
+60
+inline bool URLSpec::operator <(URLSpec const &other) const;
+
+212 10 compare_to 0 4 385 19 URLSpec::compare_to 0 1 17 397
+////////////////////////////////////////////////////////////////////
+//     Function: URLSpec::compare_to
+//       Access: Published
+//  Description: Returns a number less than zero if this URLSpec
+//               sorts before the other one, greater than zero if it
+//               sorts after, or zero if they are equivalent.
+////////////////////////////////////////////////////////////////////
+59
+inline int URLSpec::compare_to(URLSpec const &other) const;
+
+213 10 has_scheme 0 4 385 19 URLSpec::has_scheme 0 1 18 311
+////////////////////////////////////////////////////////////////////
+//     Function: URLSpec::has_scheme
+//       Access: Published
+//  Description: Returns true if the URL specifies a scheme
+//               (e.g. "http:"), false otherwise.
+////////////////////////////////////////////////////////////////////
+44
+inline bool URLSpec::has_scheme(void) const;
+
+214 13 has_authority 0 4 385 22 URLSpec::has_authority 0 1 19 366
+////////////////////////////////////////////////////////////////////
+//     Function: URLSpec::has_authority
+//       Access: Published
+//  Description: Returns true if the URL specifies an authority
+//               (this includes username, server, and/or port), false
+//               otherwise.
+////////////////////////////////////////////////////////////////////
+47
+inline bool URLSpec::has_authority(void) const;
+
+215 12 has_username 0 4 385 21 URLSpec::has_username 0 1 20 318
+////////////////////////////////////////////////////////////////////
+//     Function: URLSpec::has_username
+//       Access: Published
+//  Description: Returns true if the URL specifies a username
+//               (and/or password), false otherwise.
+////////////////////////////////////////////////////////////////////
+46
+inline bool URLSpec::has_username(void) const;
+
+216 10 has_server 0 4 385 19 URLSpec::has_server 0 1 21 301
+////////////////////////////////////////////////////////////////////
+//     Function: URLSpec::has_server
+//       Access: Published
+//  Description: Returns true if the URL specifies a server name,
+//               false otherwise.
+////////////////////////////////////////////////////////////////////
+44
+inline bool URLSpec::has_server(void) const;
+
+217 8 has_port 0 4 385 17 URLSpec::has_port 0 1 22 299
+////////////////////////////////////////////////////////////////////
+//     Function: URLSpec::has_port
+//       Access: Published
+//  Description: Returns true if the URL specifies a port number,
+//               false otherwise.
+////////////////////////////////////////////////////////////////////
+42
+inline bool URLSpec::has_port(void) const;
+
+218 8 has_path 0 4 385 17 URLSpec::has_path 0 1 23 383
+////////////////////////////////////////////////////////////////////
+//     Function: URLSpec::has_path
+//       Access: Published
+//  Description: Returns true if the URL includes a path specification
+//               (that is, the particular filename on the server to
+//               retrieve), false otherwise.
+////////////////////////////////////////////////////////////////////
+42
+inline bool URLSpec::has_path(void) const;
+
+219 9 has_query 0 4 385 18 URLSpec::has_query 0 1 24 307
+////////////////////////////////////////////////////////////////////
+//     Function: URLSpec::has_query
+//       Access: Published
+//  Description: Returns true if the URL includes a query
+//               specification, false otherwise.
+////////////////////////////////////////////////////////////////////
+43
+inline bool URLSpec::has_query(void) const;
+
+220 10 get_scheme 0 4 385 19 URLSpec::get_scheme 0 1 25 319
+////////////////////////////////////////////////////////////////////
+//     Function: URLSpec::get_scheme
+//       Access: Published
+//  Description: Returns the scheme specified by the URL, or empty
+//               string if no scheme is specified.
+////////////////////////////////////////////////////////////////////
+53
+basic_string< char > URLSpec::get_scheme(void) const;
+
+221 13 get_authority 0 4 385 22 URLSpec::get_authority 0 1 26 391
+////////////////////////////////////////////////////////////////////
+//     Function: URLSpec::get_authority
+//       Access: Published
+//  Description: Returns the authority specified by the URL (this
+//               includes username, server, and/or port), or empty
+//               string if no authority is specified.
+////////////////////////////////////////////////////////////////////
+63
+inline basic_string< char > URLSpec::get_authority(void) const;
+
+222 12 get_username 0 4 385 21 URLSpec::get_username 0 1 27 447
+////////////////////////////////////////////////////////////////////
+//     Function: URLSpec::get_username
+//       Access: Published
+//  Description: Returns the username specified by the URL, if any.
+//               This might also include a password,
+//               e.g. "username:password", although putting a password
+//               on the URL is probably a bad idea.
+////////////////////////////////////////////////////////////////////
+62
+inline basic_string< char > URLSpec::get_username(void) const;
+
+223 10 get_server 0 4 385 19 URLSpec::get_server 0 1 28 272
+////////////////////////////////////////////////////////////////////
+//     Function: URLSpec::get_server
+//       Access: Published
+//  Description: Returns the server name specified by the URL, if any.
+////////////////////////////////////////////////////////////////////
+60
+inline basic_string< char > URLSpec::get_server(void) const;
+
+224 12 get_port_str 0 4 385 21 URLSpec::get_port_str 0 1 29 459
+////////////////////////////////////////////////////////////////////
+//     Function: URLSpec::get_port_str
+//       Access: Published
+//  Description: Returns the port specified by the URL as a string, or
+//               the empty string if no port is specified.  Compare
+//               this with get_port(), which returns a default port
+//               number if no port is specified.
+////////////////////////////////////////////////////////////////////
+62
+inline basic_string< char > URLSpec::get_port_str(void) const;
+
+225 8 get_port 0 4 385 17 URLSpec::get_port 0 1 30 317
+////////////////////////////////////////////////////////////////////
+//     Function: URLSpec::get_port
+//       Access: Published
+//  Description: Returns the port number specified by the URL, or the
+//               default port if not specified.
+////////////////////////////////////////////////////////////////////
+34
+int URLSpec::get_port(void) const;
+
+226 19 get_server_and_port 0 4 385 28 URLSpec::get_server_and_port 0 1 31 483
+////////////////////////////////////////////////////////////////////
+//     Function: URLSpec::get_server_and_port
+//       Access: Published
+//  Description: Returns a string consisting of the server name,
+//               followed by a colon, followed by the port number.  If
+//               the port number is not explicitly given in the URL,
+//               this string will include the implicit port number.
+////////////////////////////////////////////////////////////////////
+62
+basic_string< char > URLSpec::get_server_and_port(void) const;
+
+227 15 is_default_port 0 4 385 24 URLSpec::is_default_port 0 1 32 439
+////////////////////////////////////////////////////////////////////
+//     Function: URLSpec::is_default_port
+//       Access: Published
+//  Description: Returns true if the port number encoded in this URL
+//               is the default port number for the scheme (or if
+//               there is no port number), or false if it is a
+//               nonstandard port.
+////////////////////////////////////////////////////////////////////
+42
+bool URLSpec::is_default_port(void) const;
+
+228 27 get_default_port_for_scheme 0 4 385 36 URLSpec::get_default_port_for_scheme 0 1 33 353
+////////////////////////////////////////////////////////////////////
+//     Function: URLSpec::get_default_port_for_scheme
+//       Access: Published, Static
+//  Description: Returns the default port number for the indicated
+//               scheme, or 0 if there is no known default.
+////////////////////////////////////////////////////////////////////
+84
+static int URLSpec::get_default_port_for_scheme(basic_string< char > const &scheme);
+
+229 8 get_path 0 4 385 17 URLSpec::get_path 0 1 34 304
+////////////////////////////////////////////////////////////////////
+//     Function: URLSpec::get_path
+//       Access: Published
+//  Description: Returns the path specified by the URL, or "/" if no
+//               path is specified.
+////////////////////////////////////////////////////////////////////
+51
+basic_string< char > URLSpec::get_path(void) const;
+
+230 9 get_query 0 4 385 18 URLSpec::get_query 0 1 35 316
+////////////////////////////////////////////////////////////////////
+//     Function: URLSpec::get_query
+//       Access: Published
+//  Description: Returns the query specified by the URL, or empty
+//               string if no query is specified.
+////////////////////////////////////////////////////////////////////
+59
+inline basic_string< char > URLSpec::get_query(void) const;
+
+231 18 get_path_and_query 0 4 385 27 URLSpec::get_path_and_query 0 1 36 336
+////////////////////////////////////////////////////////////////////
+//     Function: URLSpec::get_path_and_query
+//       Access: Published
+//  Description: Returns the path (or "/" if no path is specified),
+//               followed by the query if it is specified.
+////////////////////////////////////////////////////////////////////
+61
+basic_string< char > URLSpec::get_path_and_query(void) const;
+
+232 6 is_ssl 0 4 385 15 URLSpec::is_ssl 0 1 37 350
+////////////////////////////////////////////////////////////////////
+//     Function: URLSpec::is_ssl
+//       Access: Published
+//  Description: Returns true if the URL's scheme specifies an
+//               SSL-secured protocol such as https, or false
+//               otherwise.
+////////////////////////////////////////////////////////////////////
+40
+inline bool URLSpec::is_ssl(void) const;
+
+233 7 get_url 0 4 385 16 URLSpec::get_url 0 1 38 255
+////////////////////////////////////////////////////////////////////
+//     Function: URLSpec::get_url
+//       Access: Published
+//  Description: Returns the complete URL specification.
+////////////////////////////////////////////////////////////////////
+64
+inline basic_string< char > const &URLSpec::get_url(void) const;
+
+234 10 set_scheme 0 4 385 19 URLSpec::set_scheme 0 1 39 269
+////////////////////////////////////////////////////////////////////
+//     Function: URLSpec::set_scheme
+//       Access: Published
+//  Description: Replaces the scheme part of the URL specification.
+////////////////////////////////////////////////////////////////////
+61
+void URLSpec::set_scheme(basic_string< char > const &scheme);
+
+235 13 set_authority 0 4 385 22 URLSpec::set_authority 0 1 40 338
+////////////////////////////////////////////////////////////////////
+//     Function: URLSpec::set_authority
+//       Access: Published
+//  Description: Replaces the authority part of the URL specification.
+//               This includes the username, server, and port.
+////////////////////////////////////////////////////////////////////
+67
+void URLSpec::set_authority(basic_string< char > const &authority);
+
+236 12 set_username 0 4 385 21 URLSpec::set_username 0 1 41 273
+////////////////////////////////////////////////////////////////////
+//     Function: URLSpec::set_username
+//       Access: Published
+//  Description: Replaces the username part of the URL specification.
+////////////////////////////////////////////////////////////////////
+65
+void URLSpec::set_username(basic_string< char > const &username);
+
+237 10 set_server 0 4 385 19 URLSpec::set_server 0 1 42 269
+////////////////////////////////////////////////////////////////////
+//     Function: URLSpec::set_server
+//       Access: Published
+//  Description: Replaces the server part of the URL specification.
+////////////////////////////////////////////////////////////////////
+61
+void URLSpec::set_server(basic_string< char > const &server);
+
+238 8 set_port 0 4 385 17 URLSpec::set_port 0 2 43 44 578
+////////////////////////////////////////////////////////////////////
+//     Function: URLSpec::set_port
+//       Access: Published
+//  Description: Replaces the port part of the URL specification.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: URLSpec::set_port
+//       Access: Published
+//  Description: Replaces the port part of the URL specification,
+//               given a numeric port number.
+////////////////////////////////////////////////////////////////////
+91
+void URLSpec::set_port(basic_string< char > const &port);
+void URLSpec::set_port(int port);
+
+239 19 set_server_and_port 0 4 385 28 URLSpec::set_server_and_port 0 1 45 460
+////////////////////////////////////////////////////////////////////
+//     Function: URLSpec::set_server_and_port
+//       Access: Published
+//  Description: Replaces the server and port parts of the URL
+//               specification simultaneously.  The input string
+//               should be of the form "server:port", or just
+//               "server" to make the port number implicit.
+////////////////////////////////////////////////////////////////////
+79
+void URLSpec::set_server_and_port(basic_string< char > const &server_and_port);
+
+240 8 set_path 0 4 385 17 URLSpec::set_path 0 1 46 265
+////////////////////////////////////////////////////////////////////
+//     Function: URLSpec::set_path
+//       Access: Published
+//  Description: Replaces the path part of the URL specification.
+////////////////////////////////////////////////////////////////////
+57
+void URLSpec::set_path(basic_string< char > const &path);
+
+241 9 set_query 0 4 385 18 URLSpec::set_query 0 1 47 267
+////////////////////////////////////////////////////////////////////
+//     Function: URLSpec::set_query
+//       Access: Published
+//  Description: Replaces the query part of the URL specification.
+////////////////////////////////////////////////////////////////////
+59
+void URLSpec::set_query(basic_string< char > const &query);
+
+242 7 set_url 0 4 385 16 URLSpec::set_url 0 2 48 49 441
+////////////////////////////////////////////////////////////////////
+//     Function: URLSpec::set_url
+//       Access: Published
+//  Description: Completely replaces the URL with the indicated
+//               string.  If server_name_expected is true, it is a
+//               hint that an undecorated URL is probably a server
+//               name, not a local filename.
+////////////////////////////////////////////////////////////////////
+88
+void URLSpec::set_url(basic_string< char > const &url, bool server_name_expected = (0));
+
+243 17 operator typecast 0 132 385 26 URLSpec::operator typecast 0 1 62 0
+74
+inline basic_string< char > const &URLSpec::operator typecast(void) const;
+
+244 5 c_str 0 4 385 14 URLSpec::c_str 0 1 50 210
+////////////////////////////////////////////////////////////////////
+//     Function: URLSpec::c_str
+//       Access: Public
+//  Description:
+////////////////////////////////////////////////////////////////////
+46
+inline char const *URLSpec::c_str(void) const;
+
+245 5 empty 0 4 385 14 URLSpec::empty 0 1 51 210
+////////////////////////////////////////////////////////////////////
+//     Function: URLSpec::empty
+//       Access: Public
+//  Description:
+////////////////////////////////////////////////////////////////////
+39
+inline bool URLSpec::empty(void) const;
+
+246 6 length 0 4 385 15 URLSpec::length 0 1 52 211
+////////////////////////////////////////////////////////////////////
+//     Function: URLSpec::length
+//       Access: Public
+//  Description:
+////////////////////////////////////////////////////////////////////
+48
+inline unsigned int URLSpec::length(void) const;
+
+247 11 operator [] 0 4 385 20 URLSpec::operator [] 0 1 53 0
+46
+inline char URLSpec::operator [](int n) const;
+
+248 5 input 0 4 385 14 URLSpec::input 0 1 54 214
+////////////////////////////////////////////////////////////////////
+//     Function: URLSpec::input
+//       Access: Published
+//  Description: 
+////////////////////////////////////////////////////////////////////
+33
+bool URLSpec::input(istream &in);
+
+249 6 output 0 4 385 15 URLSpec::output 0 1 55 215
+////////////////////////////////////////////////////////////////////
+//     Function: URLSpec::output
+//       Access: Published
+//  Description: 
+////////////////////////////////////////////////////////////////////
+41
+void URLSpec::output(ostream &out) const;
+
+250 5 quote 0 4 385 14 URLSpec::quote 0 2 56 57 617
+////////////////////////////////////////////////////////////////////
+//     Function: URLSpec::quote
+//       Access: Published, Static
+//  Description: Returns the source string with all "unsafe"
+//               characters quoted, making a string suitable for
+//               placing in a URL.  Letters, digits, and the
+//               underscore, comma, period, and hyphen characters, as
+//               well as any included in the safe string, are left
+//               alone; all others are converted to hex
+//               representation.
+////////////////////////////////////////////////////////////////////
+121
+static basic_string< char > URLSpec::quote(basic_string< char > const &source, basic_string< char > const &safe = ("/"));
+
+251 10 quote_plus 0 4 385 19 URLSpec::quote_plus 0 2 58 59 330
+////////////////////////////////////////////////////////////////////
+//     Function: URLSpec::quote_plus
+//       Access: Published, Static
+//  Description: Behaves like quote() with the additional behavior of
+//               replacing spaces with plus signs.
+////////////////////////////////////////////////////////////////////
+126
+static basic_string< char > URLSpec::quote_plus(basic_string< char > const &source, basic_string< char > const &safe = ("/"));
+
+252 7 unquote 0 4 385 16 URLSpec::unquote 0 1 60 365
+////////////////////////////////////////////////////////////////////
+//     Function: URLSpec::unquote
+//       Access: Published, Static
+//  Description: Reverses the operation of quote(): converts escaped
+//               characters of the form "%xx" to their ascii
+//               equivalent.
+////////////////////////////////////////////////////////////////////
+81
+static basic_string< char > URLSpec::unquote(basic_string< char > const &source);
+
+253 12 unquote_plus 0 4 385 21 URLSpec::unquote_plus 0 1 61 415
+////////////////////////////////////////////////////////////////////
+//     Function: URLSpec::unquote_plus
+//       Access: Published, Static
+//  Description: Reverses the operation of quote_plus(): converts escaped
+//               characters of the form "%xx" to their ascii
+//               equivalent, and also converts plus signs to spaces.
+////////////////////////////////////////////////////////////////////
+86
+static basic_string< char > URLSpec::unquote_plus(basic_string< char > const &source);
+
+254 8 ~URLSpec 0 4 385 17 URLSpec::~URLSpec 0 0 0
+24
+URLSpec::~URLSpec(void);
+
+255 13 HTTPEntityTag 0 4 386 28 HTTPEntityTag::HTTPEntityTag 0 4 63 64 65 66 1170
+////////////////////////////////////////////////////////////////////
+//     Function: HTTPEntityTag::Constructor
+//       Access: Published
+//  Description: 
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: HTTPEntityTag::Constructor
+//       Access: Published
+//  Description: This constructor accepts an explicit weak flag and a
+//               literal (not quoted) tag string.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: HTTPEntityTag::Copy Constructor
+//       Access: Published
+//  Description:
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: HTTPEntityTag::Constructor
+//       Access: Published
+//  Description: This constructor accepts a string as formatted from
+//               an HTTP server (e.g. the tag is quoted, with an
+//               optional W/ prefix.)
+////////////////////////////////////////////////////////////////////
+251
+inline HTTPEntityTag::HTTPEntityTag(void);
+HTTPEntityTag::HTTPEntityTag(basic_string< char > const &text);
+inline HTTPEntityTag::HTTPEntityTag(bool weak, basic_string< char > const &tag);
+inline HTTPEntityTag::HTTPEntityTag(HTTPEntityTag const &copy);
+
+256 10 operator = 0 4 386 25 HTTPEntityTag::operator = 0 1 67 0
+65
+inline void HTTPEntityTag::operator =(HTTPEntityTag const &copy);
+
+257 7 is_weak 0 4 386 22 HTTPEntityTag::is_weak 0 1 68 525
+////////////////////////////////////////////////////////////////////
+//     Function: HTTPEntityTag::is_weak
+//       Access: Published
+//  Description: Returns true if the entity tag is marked as "weak".
+//               A consistent weak entity tag does not guarantee that
+//               its resource has not changed in any way, but it does
+//               promise that the resource has not changed in any
+//               semantically meaningful way.
+////////////////////////////////////////////////////////////////////
+47
+inline bool HTTPEntityTag::is_weak(void) const;
+
+258 7 get_tag 0 4 386 22 HTTPEntityTag::get_tag 0 1 69 258
+////////////////////////////////////////////////////////////////////
+//     Function: HTTPEntityTag::get_tag
+//       Access: Published
+//  Description: Returns the tag as a literal string.
+////////////////////////////////////////////////////////////////////
+70
+inline basic_string< char > const &HTTPEntityTag::get_tag(void) const;
+
+259 10 get_string 0 4 386 25 HTTPEntityTag::get_string 0 1 70 372
+////////////////////////////////////////////////////////////////////
+//     Function: HTTPEntityTag::get_string
+//       Access: Published
+//  Description: Returns the entity tag formatted for sending to an
+//               HTTP server (the tag is quoted, with a conditional W/
+//               prefix).
+////////////////////////////////////////////////////////////////////
+59
+basic_string< char > HTTPEntityTag::get_string(void) const;
+
+260 12 strong_equiv 0 4 386 27 HTTPEntityTag::strong_equiv 0 1 71 345
+////////////////////////////////////////////////////////////////////
+//     Function: HTTPEntityTag::strong_equiv
+//       Access: Published
+//  Description: Returns true if the two tags have "strong" equivalence:
+//               they are the same tag, and both are "strong".
+////////////////////////////////////////////////////////////////////
+74
+inline bool HTTPEntityTag::strong_equiv(HTTPEntityTag const &other) const;
+
+261 10 weak_equiv 0 4 386 25 HTTPEntityTag::weak_equiv 0 1 72 349
+////////////////////////////////////////////////////////////////////
+//     Function: HTTPEntityTag::weak_equiv
+//       Access: Published
+//  Description: Returns true if the two tags have "weak" equivalence:
+//               they are the same tag, and one or both may be "weak".
+////////////////////////////////////////////////////////////////////
+72
+inline bool HTTPEntityTag::weak_equiv(HTTPEntityTag const &other) const;
+
+262 11 operator == 0 4 386 26 HTTPEntityTag::operator == 0 1 73 0
+73
+inline bool HTTPEntityTag::operator ==(HTTPEntityTag const &other) const;
+
+263 11 operator != 0 4 386 26 HTTPEntityTag::operator != 0 1 74 0
+73
+inline bool HTTPEntityTag::operator !=(HTTPEntityTag const &other) const;
+
+264 10 operator < 0 4 386 25 HTTPEntityTag::operator < 0 1 75 0
+72
+inline bool HTTPEntityTag::operator <(HTTPEntityTag const &other) const;
+
+265 10 compare_to 0 4 386 25 HTTPEntityTag::compare_to 0 1 76 409
+////////////////////////////////////////////////////////////////////
+//     Function: HTTPEntityTag::compare_to
+//       Access: Published
+//  Description: Returns a number less than zero if this HTTPEntityTag
+//               sorts before the other one, greater than zero if it
+//               sorts after, or zero if they are equivalent.
+////////////////////////////////////////////////////////////////////
+71
+inline int HTTPEntityTag::compare_to(HTTPEntityTag const &other) const;
+
+266 6 output 0 4 386 21 HTTPEntityTag::output 0 1 77 221
+////////////////////////////////////////////////////////////////////
+//     Function: HTTPEntityTag::output
+//       Access: Published
+//  Description: 
+////////////////////////////////////////////////////////////////////
+54
+inline void HTTPEntityTag::output(ostream &out) const;
+
+267 14 ~HTTPEntityTag 0 4 386 29 HTTPEntityTag::~HTTPEntityTag 0 0 0
+36
+HTTPEntityTag::~HTTPEntityTag(void);
+
+268 8 HTTPDate 0 4 387 18 HTTPDate::HTTPDate 0 4 78 79 80 81 1034
+////////////////////////////////////////////////////////////////////
+//     Function: HTTPDate::Constructor
+//       Access: Published
+//  Description:
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: HTTPDate::Constructor
+//       Access: Published
+//  Description:
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: HTTPDate::Copy Constructor
+//       Access: Published
+//  Description:
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: HTTPDate::Constructor
+//       Access: Published
+//  Description: Decodes the string into a sensible date.  Returns 0
+//               (!is_valid()) if the string cannot be correctly
+//               decoded.
+////////////////////////////////////////////////////////////////////
+183
+inline HTTPDate::HTTPDate(void);
+inline HTTPDate::HTTPDate(unsigned int time);
+HTTPDate::HTTPDate(basic_string< char > const &format);
+inline HTTPDate::HTTPDate(HTTPDate const &copy);
+
+269 10 operator = 0 4 387 20 HTTPDate::operator = 0 1 82 0
+55
+inline void HTTPDate::operator =(HTTPDate const &copy);
+
+270 3 now 0 4 387 13 HTTPDate::now 0 1 83 320
+////////////////////////////////////////////////////////////////////
+//     Function: HTTPDate::now (named constructor)
+//       Access: Published, Static
+//  Description: Returns an HTTPDate that represents the current time
+//               and date.
+////////////////////////////////////////////////////////////////////
+43
+static inline HTTPDate HTTPDate::now(void);
+
+271 8 is_valid 0 4 387 18 HTTPDate::is_valid 0 1 84 379
+////////////////////////////////////////////////////////////////////
+//     Function: HTTPDate::is_valid
+//       Access: Published
+//  Description: Returns true if the date is meaningful, or false if
+//               it is -1 (which generally indicates the source string
+//               could not be parsed.)
+////////////////////////////////////////////////////////////////////
+43
+inline bool HTTPDate::is_valid(void) const;
+
+272 10 get_string 0 4 387 20 HTTPDate::get_string 0 1 85 219
+////////////////////////////////////////////////////////////////////
+//     Function: HTTPDate::get_string
+//       Access: Published
+//  Description:
+////////////////////////////////////////////////////////////////////
+54
+basic_string< char > HTTPDate::get_string(void) const;
+
+273 8 get_time 0 4 387 18 HTTPDate::get_time 0 1 86 255
+////////////////////////////////////////////////////////////////////
+//     Function: HTTPDate::get_time
+//       Access: Published
+//  Description: Returns the date as a C time_t value.
+////////////////////////////////////////////////////////////////////
+51
+inline unsigned int HTTPDate::get_time(void) const;
+
+274 11 operator == 0 4 387 21 HTTPDate::operator == 0 1 87 0
+63
+inline bool HTTPDate::operator ==(HTTPDate const &other) const;
+
+275 11 operator != 0 4 387 21 HTTPDate::operator != 0 1 88 0
+63
+inline bool HTTPDate::operator !=(HTTPDate const &other) const;
+
+276 10 operator < 0 4 387 20 HTTPDate::operator < 0 1 89 0
+62
+inline bool HTTPDate::operator <(HTTPDate const &other) const;
+
+277 10 operator > 0 4 387 20 HTTPDate::operator > 0 1 90 0
+62
+inline bool HTTPDate::operator >(HTTPDate const &other) const;
+
+278 10 compare_to 0 4 387 20 HTTPDate::compare_to 0 1 91 399
+////////////////////////////////////////////////////////////////////
+//     Function: HTTPDate::compare_to
+//       Access: Published
+//  Description: Returns a number less than zero if this HTTPDate
+//               sorts before the other one, greater than zero if it
+//               sorts after, or zero if they are equivalent.
+////////////////////////////////////////////////////////////////////
+61
+inline int HTTPDate::compare_to(HTTPDate const &other) const;
+
+279 11 operator += 0 4 387 21 HTTPDate::operator += 0 1 92 0
+47
+inline void HTTPDate::operator +=(int seconds);
+
+280 11 operator -= 0 4 387 21 HTTPDate::operator -= 0 1 93 0
+47
+inline void HTTPDate::operator -=(int seconds);
+
+281 10 operator + 0 4 387 20 HTTPDate::operator + 0 1 94 0
+56
+inline HTTPDate HTTPDate::operator +(int seconds) const;
+
+282 10 operator - 0 4 387 20 HTTPDate::operator - 0 2 95 96 0
+118
+inline HTTPDate HTTPDate::operator -(int seconds) const;
+inline int HTTPDate::operator -(HTTPDate const &other) const;
+
+283 5 input 0 4 387 15 HTTPDate::input 0 1 97 215
+////////////////////////////////////////////////////////////////////
+//     Function: HTTPDate::input
+//       Access: Published
+//  Description: 
+////////////////////////////////////////////////////////////////////
+34
+bool HTTPDate::input(istream &in);
+
+284 6 output 0 4 387 16 HTTPDate::output 0 1 98 216
+////////////////////////////////////////////////////////////////////
+//     Function: HTTPDate::output
+//       Access: Published
+//  Description: 
+////////////////////////////////////////////////////////////////////
+42
+void HTTPDate::output(ostream &out) const;
+
+285 9 ~HTTPDate 0 4 387 19 HTTPDate::~HTTPDate 0 0 0
+26
+HTTPDate::~HTTPDate(void);
+
+286 12 DocumentSpec 0 4 388 26 DocumentSpec::DocumentSpec 0 4 99 100 101 102 907
+////////////////////////////////////////////////////////////////////
+//     Function: DocumentSpec::Constructor
+//       Access: Published
+//  Description:
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: DocumentSpec::Constructor
+//       Access: Published
+//  Description:
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: DocumentSpec::Constructor
+//       Access: Published
+//  Description:
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: DocumentSpec::Copy Constructor
+//       Access: Published
+//  Description:
+////////////////////////////////////////////////////////////////////
+224
+inline DocumentSpec::DocumentSpec(void);
+inline DocumentSpec::DocumentSpec(basic_string< char > const &url);
+inline DocumentSpec::DocumentSpec(URLSpec const &url);
+inline DocumentSpec::DocumentSpec(DocumentSpec const &copy);
+
+287 10 operator = 0 4 388 24 DocumentSpec::operator = 0 1 103 0
+63
+inline void DocumentSpec::operator =(DocumentSpec const &copy);
+
+288 11 operator == 0 4 388 25 DocumentSpec::operator == 0 1 104 0
+71
+inline bool DocumentSpec::operator ==(DocumentSpec const &other) const;
+
+289 11 operator != 0 4 388 25 DocumentSpec::operator != 0 1 105 0
+71
+inline bool DocumentSpec::operator !=(DocumentSpec const &other) const;
+
+290 10 operator < 0 4 388 24 DocumentSpec::operator < 0 1 106 0
+70
+inline bool DocumentSpec::operator <(DocumentSpec const &other) const;
+
+291 10 compare_to 0 4 388 24 DocumentSpec::compare_to 0 1 107 224
+////////////////////////////////////////////////////////////////////
+//     Function: DocumentSpec::compare_to
+//       Access: Published
+//  Description: 
+////////////////////////////////////////////////////////////////////
+62
+int DocumentSpec::compare_to(DocumentSpec const &other) const;
+
+292 7 set_url 0 4 388 21 DocumentSpec::set_url 0 1 108 598
+////////////////////////////////////////////////////////////////////
+//     Function: DocumentSpec::set_url
+//       Access: Published
+//  Description: Changes the URL of the DocumentSpec without modifying
+//               its other properties.  Normally this would be a
+//               strange thing to do, because the tag and date are
+//               usually strongly associated with the URL.  To get a
+//               DocumentSpec pointing to a new URL, you would
+//               normally create a new DocumentSpec object.
+////////////////////////////////////////////////////////////////////
+54
+inline void DocumentSpec::set_url(URLSpec const &url);
+
+293 7 get_url 0 4 388 21 DocumentSpec::get_url 0 1 109 259
+////////////////////////////////////////////////////////////////////
+//     Function: DocumentSpec::get_url
+//       Access: Published
+//  Description: Retrieves the URL of the DocumentSpec.
+////////////////////////////////////////////////////////////////////
+56
+inline URLSpec const &DocumentSpec::get_url(void) const;
+
+294 7 set_tag 0 4 388 21 DocumentSpec::set_tag 0 1 110 296
+////////////////////////////////////////////////////////////////////
+//     Function: DocumentSpec::set_tag
+//       Access: Published
+//  Description: Changes the identity tag associated with the
+//               DocumentSpec.
+////////////////////////////////////////////////////////////////////
+60
+inline void DocumentSpec::set_tag(HTTPEntityTag const &tag);
+
+295 7 has_tag 0 4 388 21 DocumentSpec::has_tag 0 1 111 306
+////////////////////////////////////////////////////////////////////
+//     Function: DocumentSpec::has_tag
+//       Access: Published
+//  Description: Returns true if an identity tag is associated with
+//               the DocumentSpec.
+////////////////////////////////////////////////////////////////////
+46
+inline bool DocumentSpec::has_tag(void) const;
+
+296 7 get_tag 0 4 388 21 DocumentSpec::get_tag 0 1 112 524
+////////////////////////////////////////////////////////////////////
+//     Function: DocumentSpec::get_tag
+//       Access: Published
+//  Description: Returns the identity tag associated with the
+//               DocumentSpec, if there is one.  It is an error to
+//               call this if has_tag() returns false.
+//
+//               The identity tag is set by the HTTP server to
+//               uniquely refer to a particular version of a document.
+////////////////////////////////////////////////////////////////////
+62
+inline HTTPEntityTag const &DocumentSpec::get_tag(void) const;
+
+297 9 clear_tag 0 4 388 23 DocumentSpec::clear_tag 0 1 113 315
+////////////////////////////////////////////////////////////////////
+//     Function: DocumentSpec::clear_tag
+//       Access: Published
+//  Description: Removes the identity tag associated with the
+//               DocumentSpec, if there is one.
+////////////////////////////////////////////////////////////////////
+42
+inline void DocumentSpec::clear_tag(void);
+
+298 8 set_date 0 4 388 22 DocumentSpec::set_date 0 1 114 303
+////////////////////////////////////////////////////////////////////
+//     Function: DocumentSpec::set_date
+//       Access: Published
+//  Description: Changes the last-modified date associated with the
+//               DocumentSpec.
+////////////////////////////////////////////////////////////////////
+57
+inline void DocumentSpec::set_date(HTTPDate const &date);
+
+299 8 has_date 0 4 388 22 DocumentSpec::has_date 0 1 115 312
+////////////////////////////////////////////////////////////////////
+//     Function: DocumentSpec::has_date
+//       Access: Published
+//  Description: Returns true if a last-modified date is associated
+//               with the DocumentSpec.
+////////////////////////////////////////////////////////////////////
+47
+inline bool DocumentSpec::has_date(void) const;
+
+300 8 get_date 0 4 388 22 DocumentSpec::get_date 0 1 116 395
+////////////////////////////////////////////////////////////////////
+//     Function: DocumentSpec::get_date
+//       Access: Published
+//  Description: Returns the last-modified date associated with the
+//               DocumentSpec, if there is one.  It is an error to
+//               call this if has_date() returns false.
+////////////////////////////////////////////////////////////////////
+58
+inline HTTPDate const &DocumentSpec::get_date(void) const;
+
+301 10 clear_date 0 4 388 24 DocumentSpec::clear_date 0 1 117 322
+////////////////////////////////////////////////////////////////////
+//     Function: DocumentSpec::clear_date
+//       Access: Published
+//  Description: Removes the last-modified date associated with the
+//               DocumentSpec, if there is one.
+////////////////////////////////////////////////////////////////////
+43
+inline void DocumentSpec::clear_date(void);
+
+302 16 set_request_mode 0 4 388 30 DocumentSpec::set_request_mode 0 1 118 1984
+////////////////////////////////////////////////////////////////////
+//     Function: DocumentSpec::set_request_mode
+//       Access: Published
+//  Description: Sets the request mode of this DocumentSpec.  This is
+//               only relevant when using the DocumentSpec to generate
+//               a request (for instance, in HTTPChannel).  This
+//               specifies whether the document request will ask the
+//               server for a newer version than the indicated
+//               version, or the exact version, neither, or either.
+//
+//               The possible values are:
+//
+//                 RM_any: ignore date and tag (if specified), and
+//                 retrieve any document that matches the URL.  For a
+//                 subrange request, if the document matches the
+//                 version indicated exactly, retrieve the subrange
+//                 only; otherwise, retrieve the entire document.
+//
+//                 RM_equal: request only the precise version of the
+//                 document that matches the particular date and/or
+//                 tag exactly, if specified; fail if this version is
+//                 not available.
+//
+//                 RM_newer: request any document that is newer than
+//                 the version indicated by the particular date and/or
+//                 tag; fail if only that version (or older versions)
+//                 are available.
+//
+//                 RM_newer_or_equal: request any document that
+//                 matches the version indicated by the particular
+//                 date and/or tag, or is a newer version; fail if
+//                 only older versions are available.
+//
+//               In any of the above, you may specify either or both
+//               of the last-modified date and the identity tag,
+//               whichever is known to the client.
+//
+//               The default mode is RM_any.
+////////////////////////////////////////////////////////////////////
+83
+inline void DocumentSpec::set_request_mode(DocumentSpec::RequestMode request_mode);
+
+303 16 get_request_mode 0 4 388 30 DocumentSpec::get_request_mode 0 1 119 318
+////////////////////////////////////////////////////////////////////
+//     Function: DocumentSpec::get_request_mode
+//       Access: Published
+//  Description: Returns the request mode of this DocumentSpec.  See
+//               set_request_mode().
+////////////////////////////////////////////////////////////////////
+76
+inline DocumentSpec::RequestMode DocumentSpec::get_request_mode(void) const;
+
+304 17 set_cache_control 0 4 388 31 DocumentSpec::set_cache_control 0 1 120 1075
+////////////////////////////////////////////////////////////////////
+//     Function: DocumentSpec::set_cache_control
+//       Access: Published
+//  Description: Specifies what kind of cached value is acceptable for
+//               this document.  Warning: some HTTP proxies may not
+//               respect this setting and may return a cached result
+//               anyway.
+//
+//                 CC_allow_cache: the normal HTTP behavior; the
+//                 server may return a cached value if it believes it
+//                 is valid.
+//
+//                 CC_revalidate: a proxy is forced to contact the
+//                 origin server and verify that is cached value is in
+//                 fact still valid before it returns it.
+//
+//                 CC_no_cache: a proxy must not return its cached
+//                 value at all, but is forced to go all the way back
+//                 to the origin server for the official document.
+//
+//               The default mode is CC_allow_cache.
+////////////////////////////////////////////////////////////////////
+86
+inline void DocumentSpec::set_cache_control(DocumentSpec::CacheControl cache_control);
+
+305 17 get_cache_control 0 4 388 31 DocumentSpec::get_cache_control 0 1 121 320
+////////////////////////////////////////////////////////////////////
+//     Function: DocumentSpec::get_cache_control
+//       Access: Published
+//  Description: Returns the request mode of this DocumentSpec.  See
+//               set_cache_control().
+////////////////////////////////////////////////////////////////////
+78
+inline DocumentSpec::CacheControl DocumentSpec::get_cache_control(void) const;
+
+306 5 input 0 4 388 19 DocumentSpec::input 0 1 122 391
+////////////////////////////////////////////////////////////////////
+//     Function: DocumentSpec::input
+//       Access: Published
+//  Description: Can be used to read in the DocumentSpec from a stream
+//               generated either by output() or write().  Returns
+//               true on success, false on failure.
+////////////////////////////////////////////////////////////////////
+38
+bool DocumentSpec::input(istream &in);
+
+307 6 output 0 4 388 20 DocumentSpec::output 0 1 123 220
+////////////////////////////////////////////////////////////////////
+//     Function: DocumentSpec::output
+//       Access: Published
+//  Description: 
+////////////////////////////////////////////////////////////////////
+46
+void DocumentSpec::output(ostream &out) const;
+
+308 5 write 0 4 388 19 DocumentSpec::write 0 2 124 125 219
+////////////////////////////////////////////////////////////////////
+//     Function: DocumentSpec::write
+//       Access: Published
+//  Description: 
+////////////////////////////////////////////////////////////////////
+69
+void DocumentSpec::write(ostream &out, int indent_level = (0)) const;
+
+309 13 ~DocumentSpec 0 4 388 27 DocumentSpec::~DocumentSpec 0 0 0
+34
+DocumentSpec::~DocumentSpec(void);
+
+310 10 DownloadDb 0 4 391 22 DownloadDb::DownloadDb 0 3 126 127 128 797
+////////////////////////////////////////////////////////////////////
+//     Function: DownloadDb::Constructor
+//       Access: Public
+//  Description: Create a download db with these client and server dbs
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: DownloadDb::Constructor
+//       Access: Public
+//  Description: Create a download db with these client and server dbs
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: DownloadDb::Constructor
+//       Access: Public
+//  Description: Primarily used for testing.
+////////////////////////////////////////////////////////////////////
+168
+DownloadDb::DownloadDb(void);
+DownloadDb::DownloadDb(Ramfile &server_file, Filename &client_file);
+DownloadDb::DownloadDb(Filename &server_file, Filename &client_file);
+
+311 11 ~DownloadDb 0 4 391 23 DownloadDb::~DownloadDb 0 0 218
+////////////////////////////////////////////////////////////////////
+//     Function: DownloadDb::Destructor
+//       Access: Public
+//  Description:
+////////////////////////////////////////////////////////////////////
+30
+DownloadDb::~DownloadDb(void);
+
+312 6 output 0 4 391 18 DownloadDb::output 0 1 129 214
+////////////////////////////////////////////////////////////////////
+//     Function: DownloadDb::output
+//       Access: Public
+//  Description:
+////////////////////////////////////////////////////////////////////
+44
+void DownloadDb::output(ostream &out) const;
+
+313 5 write 0 4 391 17 DownloadDb::write 0 1 130 213
+////////////////////////////////////////////////////////////////////
+//     Function: DownloadDb::write
+//       Access: Public
+//  Description:
+////////////////////////////////////////////////////////////////////
+43
+void DownloadDb::write(ostream &out) const;
+
+314 17 write_version_map 0 4 391 29 DownloadDb::write_version_map 0 1 131 455
+////////////////////////////////////////////////////////////////////
+//     Function: DownloadDb::write_version_map
+//       Access: Protected
+//  Description:
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: DownloadDb::write_version_map
+//       Access: Public
+//  Description:
+////////////////////////////////////////////////////////////////////
+55
+void DownloadDb::write_version_map(ostream &out) const;
+
+315 15 write_client_db 0 4 391 27 DownloadDb::write_client_db 0 1 132 234
+// Write a database file
+
+////////////////////////////////////////////////////////////////////
+//     Function: DownloadDb::
+//       Access: Public
+//  Description:
+////////////////////////////////////////////////////////////////////
+49
+bool DownloadDb::write_client_db(Filename &file);
+
+316 15 write_server_db 0 4 391 27 DownloadDb::write_server_db 0 1 133 208
+////////////////////////////////////////////////////////////////////
+//     Function: DownloadDb::
+//       Access: Public
+//  Description:
+////////////////////////////////////////////////////////////////////
+49
+bool DownloadDb::write_server_db(Filename &file);
+
+317 25 get_client_num_multifiles 0 4 391 37 DownloadDb::get_client_num_multifiles 0 1 134 208
+////////////////////////////////////////////////////////////////////
+//     Function: DownloadDb::
+//       Access: Public
+//  Description:
+////////////////////////////////////////////////////////////////////
+61
+inline int DownloadDb::get_client_num_multifiles(void) const;
+
+318 25 get_server_num_multifiles 0 4 391 37 DownloadDb::get_server_num_multifiles 0 1 135 208
+////////////////////////////////////////////////////////////////////
+//     Function: DownloadDb::
+//       Access: Public
+//  Description:
+////////////////////////////////////////////////////////////////////
+61
+inline int DownloadDb::get_server_num_multifiles(void) const;
+
+319 25 get_client_multifile_name 0 4 391 37 DownloadDb::get_client_multifile_name 0 1 136 208
+////////////////////////////////////////////////////////////////////
+//     Function: DownloadDb::
+//       Access: Public
+//  Description:
+////////////////////////////////////////////////////////////////////
+83
+inline basic_string< char > DownloadDb::get_client_multifile_name(int index) const;
+
+320 25 get_server_multifile_name 0 4 391 37 DownloadDb::get_server_multifile_name 0 1 137 208
+////////////////////////////////////////////////////////////////////
+//     Function: DownloadDb::
+//       Access: Public
+//  Description:
+////////////////////////////////////////////////////////////////////
+83
+inline basic_string< char > DownloadDb::get_server_multifile_name(int index) const;
+
+321 25 get_client_multifile_size 0 4 391 37 DownloadDb::get_client_multifile_size 0 1 138 208
+////////////////////////////////////////////////////////////////////
+//     Function: DownloadDb::
+//       Access: Public
+//  Description:
+////////////////////////////////////////////////////////////////////
+84
+inline int DownloadDb::get_client_multifile_size(basic_string< char > mfname) const;
+
+322 25 set_client_multifile_size 0 4 391 37 DownloadDb::set_client_multifile_size 0 1 139 208
+////////////////////////////////////////////////////////////////////
+//     Function: DownloadDb::
+//       Access: Public
+//  Description:
+////////////////////////////////////////////////////////////////////
+89
+inline void DownloadDb::set_client_multifile_size(basic_string< char > mfname, int size);
+
+323 31 set_client_multifile_delta_size 0 4 391 43 DownloadDb::set_client_multifile_delta_size 0 1 140 208
+////////////////////////////////////////////////////////////////////
+//     Function: DownloadDb::
+//       Access: Public
+//  Description:
+////////////////////////////////////////////////////////////////////
+94
+inline int DownloadDb::set_client_multifile_delta_size(basic_string< char > mfname, int size);
+
+324 25 get_server_multifile_size 0 4 391 37 DownloadDb::get_server_multifile_size 0 1 141 208
+////////////////////////////////////////////////////////////////////
+//     Function: DownloadDb::
+//       Access: Public
+//  Description:
+////////////////////////////////////////////////////////////////////
+84
+inline int DownloadDb::get_server_multifile_size(basic_string< char > mfname) const;
+
+325 25 set_server_multifile_size 0 4 391 37 DownloadDb::set_server_multifile_size 0 1 142 208
+////////////////////////////////////////////////////////////////////
+//     Function: DownloadDb::
+//       Access: Public
+//  Description:
+////////////////////////////////////////////////////////////////////
+89
+inline void DownloadDb::set_server_multifile_size(basic_string< char > mfname, int size);
+
+326 26 get_client_multifile_phase 0 4 391 38 DownloadDb::get_client_multifile_phase 0 1 143 208
+////////////////////////////////////////////////////////////////////
+//     Function: DownloadDb::
+//       Access: Public
+//  Description:
+////////////////////////////////////////////////////////////////////
+87
+inline float DownloadDb::get_client_multifile_phase(basic_string< char > mfname) const;
+
+327 26 get_server_multifile_phase 0 4 391 38 DownloadDb::get_server_multifile_phase 0 1 144 208
+////////////////////////////////////////////////////////////////////
+//     Function: DownloadDb::
+//       Access: Public
+//  Description:
+////////////////////////////////////////////////////////////////////
+87
+inline float DownloadDb::get_server_multifile_phase(basic_string< char > mfname) const;
+
+328 31 set_client_multifile_incomplete 0 4 391 43 DownloadDb::set_client_multifile_incomplete 0 1 145 208
+////////////////////////////////////////////////////////////////////
+//     Function: DownloadDb::
+//       Access: Public
+//  Description:
+////////////////////////////////////////////////////////////////////
+85
+inline void DownloadDb::set_client_multifile_incomplete(basic_string< char > mfname);
+
+329 29 set_client_multifile_complete 0 4 391 41 DownloadDb::set_client_multifile_complete 0 1 146 208
+////////////////////////////////////////////////////////////////////
+//     Function: DownloadDb::
+//       Access: Public
+//  Description:
+////////////////////////////////////////////////////////////////////
+83
+inline void DownloadDb::set_client_multifile_complete(basic_string< char > mfname);
+
+330 33 set_client_multifile_decompressed 0 4 391 45 DownloadDb::set_client_multifile_decompressed 0 1 147 208
+////////////////////////////////////////////////////////////////////
+//     Function: DownloadDb::
+//       Access: Public
+//  Description:
+////////////////////////////////////////////////////////////////////
+87
+inline void DownloadDb::set_client_multifile_decompressed(basic_string< char > mfname);
+
+331 30 set_client_multifile_extracted 0 4 391 42 DownloadDb::set_client_multifile_extracted 0 1 148 208
+////////////////////////////////////////////////////////////////////
+//     Function: DownloadDb::
+//       Access: Public
+//  Description:
+////////////////////////////////////////////////////////////////////
+84
+inline void DownloadDb::set_client_multifile_extracted(basic_string< char > mfname);
+
+332 20 get_server_num_files 0 4 391 32 DownloadDb::get_server_num_files 0 1 149 208
+////////////////////////////////////////////////////////////////////
+//     Function: DownloadDb::
+//       Access: Public
+//  Description:
+////////////////////////////////////////////////////////////////////
+79
+inline int DownloadDb::get_server_num_files(basic_string< char > mfname) const;
+
+333 20 get_server_file_name 0 4 391 32 DownloadDb::get_server_file_name 0 1 150 208
+////////////////////////////////////////////////////////////////////
+//     Function: DownloadDb::
+//       Access: Public
+//  Description:
+////////////////////////////////////////////////////////////////////
+107
+inline basic_string< char > DownloadDb::get_server_file_name(basic_string< char > mfname, int index) const;
+
+334 23 client_multifile_exists 0 4 391 35 DownloadDb::client_multifile_exists 0 1 151 238
+// Queries from the Launcher
+
+////////////////////////////////////////////////////////////////////
+//     Function: DownloadDb::
+//       Access: Public
+//  Description:
+////////////////////////////////////////////////////////////////////
+76
+bool DownloadDb::client_multifile_exists(basic_string< char > mfname) const;
+
+335 25 client_multifile_complete 0 4 391 37 DownloadDb::client_multifile_complete 0 1 152 375
+////////////////////////////////////////////////////////////////////
+//     Function: DownloadDb::
+//       Access: Public
+//  Description: A multifile is complete when it is completely
+//               downloaded. Note: it may already be decompressed
+//               or extracted and it is still complete
+////////////////////////////////////////////////////////////////////
+78
+bool DownloadDb::client_multifile_complete(basic_string< char > mfname) const;
+
+336 29 client_multifile_decompressed 0 4 391 41 DownloadDb::client_multifile_decompressed 0 1 153 208
+////////////////////////////////////////////////////////////////////
+//     Function: DownloadDb::
+//       Access: Public
+//  Description:
+////////////////////////////////////////////////////////////////////
+82
+bool DownloadDb::client_multifile_decompressed(basic_string< char > mfname) const;
+
+337 26 client_multifile_extracted 0 4 391 38 DownloadDb::client_multifile_extracted 0 1 154 208
+////////////////////////////////////////////////////////////////////
+//     Function: DownloadDb::
+//       Access: Public
+//  Description:
+////////////////////////////////////////////////////////////////////
+79
+bool DownloadDb::client_multifile_extracted(basic_string< char > mfname) const;
+
+338 25 get_client_multifile_hash 0 4 391 37 DownloadDb::get_client_multifile_hash 0 1 155 320
+// Ask what version (told with the hash) this multifile is
+
+////////////////////////////////////////////////////////////////////
+//     Function: DownloadDb::
+//       Access: Public
+//  Description: Return the hash value of the file we are working on
+////////////////////////////////////////////////////////////////////
+81
+HashVal DownloadDb::get_client_multifile_hash(basic_string< char > mfname) const;
+
+339 25 set_client_multifile_hash 0 4 391 37 DownloadDb::set_client_multifile_hash 0 1 156 253
+////////////////////////////////////////////////////////////////////
+//     Function: DownloadDb::
+//       Access: Public
+//  Description: Set the hash value of file we are working on
+////////////////////////////////////////////////////////////////////
+85
+void DownloadDb::set_client_multifile_hash(basic_string< char > mfname, HashVal val);
+
+340 25 get_server_multifile_hash 0 4 391 37 DownloadDb::get_server_multifile_hash 0 1 157 249
+////////////////////////////////////////////////////////////////////
+//     Function: DownloadDb::
+//       Access: Public
+//  Description: Return the hash value of the server file
+////////////////////////////////////////////////////////////////////
+81
+HashVal DownloadDb::get_server_multifile_hash(basic_string< char > mfname) const;
+
+341 25 set_server_multifile_hash 0 4 391 37 DownloadDb::set_server_multifile_hash 0 1 158 253
+////////////////////////////////////////////////////////////////////
+//     Function: DownloadDb::
+//       Access: Public
+//  Description: Set the hash value of file we are working on
+////////////////////////////////////////////////////////////////////
+85
+void DownloadDb::set_server_multifile_hash(basic_string< char > mfname, HashVal val);
+
+342 23 delete_client_multifile 0 4 391 35 DownloadDb::delete_client_multifile 0 1 159 237
+// Operations on multifiles
+
+////////////////////////////////////////////////////////////////////
+//     Function: DownloadDb::
+//       Access: Public
+//  Description:
+////////////////////////////////////////////////////////////////////
+70
+void DownloadDb::delete_client_multifile(basic_string< char > mfname);
+
+343 20 add_client_multifile 0 4 391 32 DownloadDb::add_client_multifile 0 1 160 208
+////////////////////////////////////////////////////////////////////
+//     Function: DownloadDb::
+//       Access: Public
+//  Description:
+////////////////////////////////////////////////////////////////////
+74
+void DownloadDb::add_client_multifile(basic_string< char > server_mfname);
+
+344 23 expand_client_multifile 0 4 391 35 DownloadDb::expand_client_multifile 0 1 161 208
+////////////////////////////////////////////////////////////////////
+//     Function: DownloadDb::
+//       Access: Public
+//  Description:
+////////////////////////////////////////////////////////////////////
+70
+void DownloadDb::expand_client_multifile(basic_string< char > mfname);
+
+345 20 create_new_server_db 0 4 391 32 DownloadDb::create_new_server_db 0 1 162 366
+// Server side operations to create multifile records
+
+////////////////////////////////////////////////////////////////////
+//     Function: DownloadDb::create_new_server_db
+//       Access: Public
+//  Description: Used on the server side makefiles to create a
+//               new clean server db
+////////////////////////////////////////////////////////////////////
+44
+void DownloadDb::create_new_server_db(void);
+
+346 20 server_add_multifile 0 4 391 32 DownloadDb::server_add_multifile 0 1 163 208
+////////////////////////////////////////////////////////////////////
+//     Function: DownloadDb::
+//       Access: Public
+//  Description:
+////////////////////////////////////////////////////////////////////
+102
+void DownloadDb::server_add_multifile(basic_string< char > mfname, float phase, int size, int status);
+
+347 15 server_add_file 0 4 391 27 DownloadDb::server_add_file 0 1 164 208
+////////////////////////////////////////////////////////////////////
+//     Function: DownloadDb::
+//       Access: Public
+//  Description:
+////////////////////////////////////////////////////////////////////
+90
+void DownloadDb::server_add_file(basic_string< char > mfname, basic_string< char > fname);
+
+348 7 read_db 0 4 391 19 DownloadDb::read_db 0 2 165 166 438
+////////////////////////////////////////////////////////////////////
+//     Function: DownloadDb::read_db
+//       Access: Published
+//  Description:
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: DownloadDb::read_db
+//       Access: Published
+//  Description:
+////////////////////////////////////////////////////////////////////
+148
+DownloadDb::Db DownloadDb::read_db(Filename &file, bool want_server_info);
+DownloadDb::Db DownloadDb::read_db(Ramfile &file, bool want_server_info);
+
+349 8 write_db 0 4 391 20 DownloadDb::write_db 0 1 167 219
+////////////////////////////////////////////////////////////////////
+//     Function: DownloadDb::write_db
+//       Access: Published
+//  Description:
+////////////////////////////////////////////////////////////////////
+84
+bool DownloadDb::write_db(Filename &file, DownloadDb::Db db, bool want_server_info);
+
+350 11 add_version 0 4 391 23 DownloadDb::add_version 0 1 168 433
+////////////////////////////////////////////////////////////////////
+//     Function: DownloadDb::add_version
+//       Access: Published
+//  Description: Appends a new version of the file onto the end of the
+//               list, or changes the hash associated with a version
+//               previously added.
+//
+//               Note: version numbers start at 1
+////////////////////////////////////////////////////////////////////
+85
+void DownloadDb::add_version(Filename const &name, HashVal const &hash, int version);
+
+351 18 insert_new_version 0 4 391 30 DownloadDb::insert_new_version 0 1 169 330
+////////////////////////////////////////////////////////////////////
+//     Function: DownloadDb::insert_new_version
+//       Access: Published
+//  Description: Inserts a new version 1 copy of the file, sliding all
+//               the other versions up by one.
+////////////////////////////////////////////////////////////////////
+79
+void DownloadDb::insert_new_version(Filename const &name, HashVal const &hash);
+
+352 11 has_version 0 4 391 23 DownloadDb::has_version 0 1 170 404
+////////////////////////////////////////////////////////////////////
+//     Function: DownloadDb::has_version
+//       Access: Published
+//  Description: Returns true if the indicated file has version
+//               information, false otherwise.  Some files recorded in
+//               the database may not bother to track versions.
+////////////////////////////////////////////////////////////////////
+57
+bool DownloadDb::has_version(Filename const &name) const;
+
+353 16 get_num_versions 0 4 391 28 DownloadDb::get_num_versions 0 1 171 306
+////////////////////////////////////////////////////////////////////
+//     Function: DownloadDb::get_num_versions
+//       Access: Published
+//  Description: Returns the number of versions stored for the
+//               indicated file.
+////////////////////////////////////////////////////////////////////
+61
+int DownloadDb::get_num_versions(Filename const &name) const;
+
+354 16 set_num_versions 0 4 391 28 DownloadDb::set_num_versions 0 1 172 394
+////////////////////////////////////////////////////////////////////
+//     Function: DownloadDb::set_num_versions
+//       Access: Published
+//  Description: Reduces the number of versions of a particular file
+//               stored in the ddb by throwing away all versions
+//               higher than the indicated index.
+////////////////////////////////////////////////////////////////////
+74
+void DownloadDb::set_num_versions(Filename const &name, int num_versions);
+
+355 11 get_version 0 4 391 23 DownloadDb::get_version 0 1 173 440
+////////////////////////////////////////////////////////////////////
+//     Function: DownloadDb::get_version
+//       Access: Published
+//  Description: Returns the version number of this particular file,
+//               determined by looking up the hash generated from the
+//               file.  Returns -1 if the version number cannot be
+//               determined.
+////////////////////////////////////////////////////////////////////
+77
+int DownloadDb::get_version(Filename const &name, HashVal const &hash) const;
+
+356 8 get_hash 0 4 391 20 DownloadDb::get_hash 0 1 174 318
+////////////////////////////////////////////////////////////////////
+//     Function: DownloadDb::get_hash
+//       Access: Published
+//  Description: Returns the MD5 hash associated with the indicated
+//               version of the indicated file.
+////////////////////////////////////////////////////////////////////
+77
+HashVal const &DownloadDb::get_hash(Filename const &name, int version) const;
+
+357 9 check_crc 0 1 0 9 check_crc 0 1 199 0
+43
+unsigned long int check_crc(Filename name);
+
+358 11 check_adler 0 1 0 11 check_adler 0 1 200 0
+45
+unsigned long int check_adler(Filename name);
+
+359 9 Extractor 0 4 393 20 Extractor::Extractor 0 1 175 221
+////////////////////////////////////////////////////////////////////
+//     Function: Extractor::Constructor
+//       Access: Published
+//  Description:
+////////////////////////////////////////////////////////////////////
+27
+Extractor::Extractor(void);
+
+360 10 ~Extractor 0 4 393 21 Extractor::~Extractor 0 0 220
+////////////////////////////////////////////////////////////////////
+//     Function: Extractor::Destructor
+//       Access: Published
+//  Description:
+////////////////////////////////////////////////////////////////////
+28
+Extractor::~Extractor(void);
+
+361 13 set_multifile 0 4 393 24 Extractor::set_multifile 0 1 176 392
+////////////////////////////////////////////////////////////////////
+//     Function: Extractor::set_multifile
+//       Access: Published
+//  Description: Specifies the filename of the Multifile that the
+//               Extractor will read.  Returns true on success, false
+//               if the mulifile name is invalid.
+////////////////////////////////////////////////////////////////////
+62
+bool Extractor::set_multifile(Filename const &multifile_name);
+
+362 15 set_extract_dir 0 4 393 26 Extractor::set_extract_dir 0 1 177 453
+////////////////////////////////////////////////////////////////////
+//     Function: Extractor::set_extract_dir
+//       Access: Published
+//  Description: Specifies the directory into which all extracted
+//               subfiles will be written.  Relative paths of subfiles
+//               within the Multifile will be written as relative
+//               paths to this directory.
+////////////////////////////////////////////////////////////////////
+61
+void Extractor::set_extract_dir(Filename const &extract_dir);
+
+363 5 reset 0 4 393 16 Extractor::reset 0 1 178 368
+////////////////////////////////////////////////////////////////////
+//     Function: Extractor::reset
+//       Access: Published
+//  Description: Interrupts the Extractor in the middle of its
+//               business and makes it ready to accept a new list of
+//               subfiles to extract.
+////////////////////////////////////////////////////////////////////
+28
+void Extractor::reset(void);
+
+364 15 request_subfile 0 4 393 26 Extractor::request_subfile 0 1 179 391
+////////////////////////////////////////////////////////////////////
+//     Function: Extractor::request_subfile
+//       Access: Published
+//  Description: Requests a particular subfile to be extracted when
+//               step() or run() is called.  Returns true if the
+//               subfile exists, false otherwise.
+////////////////////////////////////////////////////////////////////
+62
+bool Extractor::request_subfile(Filename const &subfile_name);
+
+365 20 request_all_subfiles 0 4 393 31 Extractor::request_all_subfiles 0 1 180 334
+////////////////////////////////////////////////////////////////////
+//     Function: Extractor::request_all_subfiles
+//       Access: Published
+//  Description: Requests all subfiles in the Multifile to be
+//               extracted.  Returns the number requested.
+////////////////////////////////////////////////////////////////////
+42
+int Extractor::request_all_subfiles(void);
+
+366 4 step 0 4 393 15 Extractor::step 0 1 181 695
+////////////////////////////////////////////////////////////////////
+//     Function: Extractor::step
+//       Access: Published
+//  Description: After all of the requests have been made via
+//               request_file() or request_all_subfiles(), call step()
+//               repeatedly until it stops returning EU_ok.
+//
+//               step() extracts the next small unit of data from the
+//               Multifile.  Returns EU_ok if progress is continuing,
+//               EU_error_abort if there is a problem, or EU_success
+//               when the last piece has been extracted.
+//
+//               Also see run().
+////////////////////////////////////////////////////////////////////
+26
+int Extractor::step(void);
+
+367 12 get_progress 0 4 393 23 Extractor::get_progress 0 1 182 292
+////////////////////////////////////////////////////////////////////
+//     Function: Extractor::get_progress
+//       Access: Public
+//  Description: Returns the fraction of the Multifile extracted so
+//               far.
+////////////////////////////////////////////////////////////////////
+42
+float Extractor::get_progress(void) const;
+
+368 3 run 0 4 393 14 Extractor::run 0 1 183 674
+////////////////////////////////////////////////////////////////////
+//     Function: Extractor::run
+//       Access: Published
+//  Description: A convenience function to extract the Multifile all
+//               at once, when you don't care about doing it in the
+//               background.
+//
+//               First, call request_file() or request_all_files() to
+//               specify the files you would like to extract, then
+//               call run() to do the extraction.  Also see step() for
+//               when you would like the extraction to happen as a
+//               background task.
+////////////////////////////////////////////////////////////////////
+26
+bool Extractor::run(void);
+
+369 15 MultiplexStream 0 4 394 32 MultiplexStream::MultiplexStream 0 1 184 224
+////////////////////////////////////////////////////////////////////
+//     Function: MultiplexStream::Constructor
+//       Access: Public
+//  Description:
+////////////////////////////////////////////////////////////////////
+46
+inline MultiplexStream::MultiplexStream(void);
+
+370 11 add_ostream 0 4 394 28 MultiplexStream::add_ostream 0 2 185 186 379
+////////////////////////////////////////////////////////////////////
+//     Function: MultiplexStream::add_ostream
+//       Access: Public
+//  Description: Adds the indicated generic ostream to the multiplex
+//               output.  The ostream will receive whatever data is
+//               sent to the pipe.
+////////////////////////////////////////////////////////////////////
+80
+inline void MultiplexStream::add_ostream(ostream *out, bool delete_later = (0));
+
+371 14 add_stdio_file 0 4 394 31 MultiplexStream::add_stdio_file 0 1 187 335
+////////////////////////////////////////////////////////////////////
+//     Function: MultiplexStream::add_stdio_file
+//       Access: Public
+//  Description: Adds the given file, previously opened using the C
+//               stdio library, to the multiplex output.
+////////////////////////////////////////////////////////////////////
+78
+inline bool MultiplexStream::add_stdio_file(FILE *file, bool close_when_done);
+
+372 19 add_standard_output 0 4 394 36 MultiplexStream::add_standard_output 0 1 188 266
+////////////////////////////////////////////////////////////////////
+//     Function: MultiplexStream::add_standard_output
+//       Access: Public
+//  Description: Adds the standard output channel.
+////////////////////////////////////////////////////////////////////
+55
+inline void MultiplexStream::add_standard_output(void);
+
+373 8 add_file 0 4 394 25 MultiplexStream::add_file 0 1 189 400
+////////////////////////////////////////////////////////////////////
+//     Function: MultiplexStream::add_file
+//       Access: Public
+//  Description: Adds the given file to the multiplex output.  The
+//               file is opened in append mode with line buffering.
+//               Returns false if the file cannot be opened.
+////////////////////////////////////////////////////////////////////
+53
+inline bool MultiplexStream::add_file(Filename file);
+
+374 16 add_system_debug 0 4 394 33 MultiplexStream::add_system_debug 0 1 190 542
+////////////////////////////////////////////////////////////////////
+//     Function: MultiplexStream::add_system_debug
+//       Access: Public
+//  Description: Adds the system debug output the the multiplex
+//               output.  This may map to a syslog or some such
+//               os-specific output system.  It may do nothing on a
+//               particular system.
+//
+//               Presently, this maps only to OutputDebugString() on
+//               Windows.
+////////////////////////////////////////////////////////////////////
+52
+inline void MultiplexStream::add_system_debug(void);
+
+375 5 flush 0 4 394 22 MultiplexStream::flush 0 1 191 270
+////////////////////////////////////////////////////////////////////
+//     Function: MultiplexStream::flush
+//       Access: Public
+//  Description: Forces out all output that hasn't yet been written.
+////////////////////////////////////////////////////////////////////
+41
+inline void MultiplexStream::flush(void);
+
+376 16 ~MultiplexStream 0 4 394 33 MultiplexStream::~MultiplexStream 0 0 0
+40
+MultiplexStream::~MultiplexStream(void);
+
+377 12 StringStream 0 4 396 26 StringStream::StringStream 0 2 192 193 545
+////////////////////////////////////////////////////////////////////
+//     Function: StringStream::Constructor
+//       Access: Published
+//  Description: 
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: StringStream::Constructor
+//       Access: Published
+//  Description: This version of the constructor preloads the buffer
+//               with the indicated data.
+////////////////////////////////////////////////////////////////////
+111
+inline StringStream::StringStream(void);
+inline StringStream::StringStream(basic_string< char > const &source);
+
+378 10 clear_data 0 4 396 24 StringStream::clear_data 0 1 194 243
+////////////////////////////////////////////////////////////////////
+//     Function: StringStream::clear_data
+//       Access: Published
+//  Description: Empties the buffer.
+////////////////////////////////////////////////////////////////////
+43
+inline void StringStream::clear_data(void);
+
+379 13 get_data_size 0 4 396 27 StringStream::get_data_size 0 1 195 319
+////////////////////////////////////////////////////////////////////
+//     Function: StringStream::get_data_size
+//       Access: Published
+//  Description: Returns the number of characters available to be read
+//               from the data stream.
+////////////////////////////////////////////////////////////////////
+54
+inline unsigned int StringStream::get_data_size(void);
+
+380 8 get_data 0 4 396 22 StringStream::get_data 0 1 196 274
+////////////////////////////////////////////////////////////////////
+//     Function: StringStream::get_data
+//       Access: Published
+//  Description: Returns the contents of the data stream as a string.
+////////////////////////////////////////////////////////////////////
+57
+inline basic_string< char > StringStream::get_data(void);
+
+381 8 set_data 0 4 396 22 StringStream::set_data 0 1 197 311
+////////////////////////////////////////////////////////////////////
+//     Function: StringStream::set_data
+//       Access: Published
+//  Description: Replaces the contents of the data stream.  This
+//               implicitly reseeks to 0.
+////////////////////////////////////////////////////////////////////
+69
+inline void StringStream::set_data(basic_string< char > const &data);
+
+382 9 swap_data 0 4 396 23 StringStream::swap_data 0 1 198 307
+////////////////////////////////////////////////////////////////////
+//     Function: StringStream::swap_data
+//       Access: Published
+//  Description: Swaps the indicated buffer for the contents of the
+//               internal buffer.
+////////////////////////////////////////////////////////////////////
+67
+inline void StringStream::swap_data(vector< unsigned char > &data);
+
+383 13 ~StringStream 0 4 396 27 StringStream::~StringStream 0 0 0
+34
+StringStream::~StringStream(void);
+
+200
+1 14 Dtool__Rn_B4PE 0 7 2 398 202 14 Dtool__Rn_B4PE 221 ////////////////////////////////////////////////////////////////////
+//     Function: Decompressor::Constructor
+//       Access: Public
+//  Description:
+//////////////////////////////////////////////////////////////////// 0 
+2 14 Dtool__Rn_w6VS 0 6 4 402 0 14 Dtool__Rn_w6VS 454 ////////////////////////////////////////////////////////////////////
+//     Function: Decompressor::initiate
+//       Access: Public
+//  Description: Begins a background decompression of the named file
+//               (whose filename must end in ".pz") to a new file
+//               without the .pz extension.  The source file is
+//               removed after successful completion.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 398  11 source_file 1 399  
+3 14 Dtool__Rn_P1ck 0 6 4 402 0 14 Dtool__Rn_P1ck 401 ////////////////////////////////////////////////////////////////////
+//     Function: Decompressor::initiate
+//       Access: Public
+//  Description: Begins a background decompression from the named
+//               source file to the named destination file.  The
+//               source file is removed after successful completion.
+//////////////////////////////////////////////////////////////////// 3 4 this 3 398  11 source_file 1 399  9 dest_file 1 399  
+4 14 Dtool__Rn_4YBi 0 6 5 402 0 14 Dtool__Rn_4YBi 493 ////////////////////////////////////////////////////////////////////
+//     Function: Decompressor::run
+//       Access: Public
+//  Description: Called each frame to do the next bit of work in the
+//               background task.  Returns EU_ok if a chunk is
+//               completed but there is more to go, or EU_success when
+//               we're all done.  Any other return value indicates an
+//               error.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 398  
+5 14 Dtool__Rn_HZkY 0 6 6 403 0 14 Dtool__Rn_HZkY 362 ////////////////////////////////////////////////////////////////////
+//     Function: Decompressor::decompress
+//       Access: Public
+//  Description: Performs a foreground decompression of the named
+//               file; does not return until the decompression is
+//               complete.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 398  11 source_file 1 399  
+6 14 Dtool__Rn_DUun 0 6 6 403 0 14 Dtool__Rn_DUun 393 ////////////////////////////////////////////////////////////////////
+//     Function: Decompressor::decompress
+//       Access: Public
+//  Description: Does an in-memory decompression of the indicated
+//               Ramfile.  The decompressed contents are written back
+//               into the same Ramfile on completion.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 398  20 source_and_dest_file 1 404  
+7 14 Dtool__Rn_ujks 0 6 7 408 0 14 Dtool__Rn_ujks 307 ////////////////////////////////////////////////////////////////////
+//     Function: Decompressor::get_progress
+//       Access: Public
+//  Description: Returns the ratio through the decompression step
+//               in the background.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 406  
+8 14 Dtool__Rn_d3sO 0 7 9 409 254 14 Dtool__Rn_d3sO 219 ////////////////////////////////////////////////////////////////////
+//     Function: URLSpec::Constructor
+//       Access: Published
+//  Description:
+//////////////////////////////////////////////////////////////////// 0 
+9 14 Dtool__Rn_KJ80 0 7 9 409 254 14 Dtool__Rn_KJ80 224 ////////////////////////////////////////////////////////////////////
+//     Function: URLSpec::Copy Constructor
+//       Access: Published
+//  Description:
+//////////////////////////////////////////////////////////////////// 1 4 copy 1 410  
+10 14 Dtool__Rn_bRSb 0 7 9 409 254 14 Dtool__Rn_bRSb 219 ////////////////////////////////////////////////////////////////////
+//     Function: URLSpec::Constructor
+//       Access: Published
+//  Description:
+//////////////////////////////////////////////////////////////////// 2 3 url 1 412  20 server_name_expected 1 403  
+11 14 Dtool__Rn_qRHT 0 7 9 409 254 14 Dtool__Rn_qRHT 219 ////////////////////////////////////////////////////////////////////
+//     Function: URLSpec::Constructor
+//       Access: Published
+//  Description:
+//////////////////////////////////////////////////////////////////// 1 3 url 1 412  
+12 14 Dtool__Rn_eMOO 0 6 10 409 0 14 Dtool__Rn_eMOO 0 2 4 this 3 409  4 copy 1 410  
+13 14 Dtool__Rn_hCwY 0 6 10 409 0 14 Dtool__Rn_hCwY 0 2 4 this 3 409  3 url 1 412  
+14 14 Dtool__Rn_UZVF 0 6 11 403 0 14 Dtool__Rn_UZVF 0 2 4 this 3 410  5 other 1 410  
+15 14 Dtool__Rn_j_VB 0 6 12 403 0 14 Dtool__Rn_j_VB 0 2 4 this 3 410  5 other 1 410  
+16 14 Dtool__Rn_p_Dk 0 6 13 403 0 14 Dtool__Rn_p_Dk 0 2 4 this 3 410  5 other 1 410  
+17 14 Dtool__Rn_OeWk 0 6 14 402 0 14 Dtool__Rn_OeWk 397 ////////////////////////////////////////////////////////////////////
+//     Function: URLSpec::compare_to
+//       Access: Published
+//  Description: Returns a number less than zero if this URLSpec
+//               sorts before the other one, greater than zero if it
+//               sorts after, or zero if they are equivalent.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 410  5 other 1 410  
+18 14 Dtool__Rn_bXfj 0 6 15 403 0 14 Dtool__Rn_bXfj 311 ////////////////////////////////////////////////////////////////////
+//     Function: URLSpec::has_scheme
+//       Access: Published
+//  Description: Returns true if the URL specifies a scheme
+//               (e.g. "http:"), false otherwise.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 410  
+19 14 Dtool__Rn_7GBb 0 6 16 403 0 14 Dtool__Rn_7GBb 366 ////////////////////////////////////////////////////////////////////
+//     Function: URLSpec::has_authority
+//       Access: Published
+//  Description: Returns true if the URL specifies an authority
+//               (this includes username, server, and/or port), false
+//               otherwise.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 410  
+20 14 Dtool__Rn_NvY8 0 6 17 403 0 14 Dtool__Rn_NvY8 318 ////////////////////////////////////////////////////////////////////
+//     Function: URLSpec::has_username
+//       Access: Published
+//  Description: Returns true if the URL specifies a username
+//               (and/or password), false otherwise.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 410  
+21 14 Dtool__Rn_7ZQR 0 6 18 403 0 14 Dtool__Rn_7ZQR 301 ////////////////////////////////////////////////////////////////////
+//     Function: URLSpec::has_server
+//       Access: Published
+//  Description: Returns true if the URL specifies a server name,
+//               false otherwise.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 410  
+22 14 Dtool__Rn_NCN_ 0 6 19 403 0 14 Dtool__Rn_NCN_ 299 ////////////////////////////////////////////////////////////////////
+//     Function: URLSpec::has_port
+//       Access: Published
+//  Description: Returns true if the URL specifies a port number,
+//               false otherwise.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 410  
+23 14 Dtool__Rn_vN5k 0 6 20 403 0 14 Dtool__Rn_vN5k 383 ////////////////////////////////////////////////////////////////////
+//     Function: URLSpec::has_path
+//       Access: Published
+//  Description: Returns true if the URL includes a path specification
+//               (that is, the particular filename on the server to
+//               retrieve), false otherwise.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 410  
+24 14 Dtool__Rn_SAZN 0 6 21 403 0 14 Dtool__Rn_SAZN 307 ////////////////////////////////////////////////////////////////////
+//     Function: URLSpec::has_query
+//       Access: Published
+//  Description: Returns true if the URL includes a query
+//               specification, false otherwise.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 410  
+25 14 Dtool__Rn_LoNu 0 6 22 412 0 14 Dtool__Rn_LoNu 319 ////////////////////////////////////////////////////////////////////
+//     Function: URLSpec::get_scheme
+//       Access: Published
+//  Description: Returns the scheme specified by the URL, or empty
+//               string if no scheme is specified.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 410  
+26 14 Dtool__Rn_7ewl 0 6 23 412 0 14 Dtool__Rn_7ewl 391 ////////////////////////////////////////////////////////////////////
+//     Function: URLSpec::get_authority
+//       Access: Published
+//  Description: Returns the authority specified by the URL (this
+//               includes username, server, and/or port), or empty
+//               string if no authority is specified.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 410  
+27 14 Dtool__Rn_iXGH 0 6 24 412 0 14 Dtool__Rn_iXGH 447 ////////////////////////////////////////////////////////////////////
+//     Function: URLSpec::get_username
+//       Access: Published
+//  Description: Returns the username specified by the URL, if any.
+//               This might also include a password,
+//               e.g. "username:password", although putting a password
+//               on the URL is probably a bad idea.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 410  
+28 14 Dtool__Rn_z1_b 0 6 25 412 0 14 Dtool__Rn_z1_b 272 ////////////////////////////////////////////////////////////////////
+//     Function: URLSpec::get_server
+//       Access: Published
+//  Description: Returns the server name specified by the URL, if any.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 410  
+29 14 Dtool__Rn_ZGG8 0 6 26 412 0 14 Dtool__Rn_ZGG8 459 ////////////////////////////////////////////////////////////////////
+//     Function: URLSpec::get_port_str
+//       Access: Published
+//  Description: Returns the port specified by the URL as a string, or
+//               the empty string if no port is specified.  Compare
+//               this with get_port(), which returns a default port
+//               number if no port is specified.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 410  
+30 14 Dtool__Rn_qS8J 0 6 27 402 0 14 Dtool__Rn_qS8J 317 ////////////////////////////////////////////////////////////////////
+//     Function: URLSpec::get_port
+//       Access: Published
+//  Description: Returns the port number specified by the URL, or the
+//               default port if not specified.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 410  
+31 14 Dtool__Rn_DsHV 0 6 28 412 0 14 Dtool__Rn_DsHV 483 ////////////////////////////////////////////////////////////////////
+//     Function: URLSpec::get_server_and_port
+//       Access: Published
+//  Description: Returns a string consisting of the server name,
+//               followed by a colon, followed by the port number.  If
+//               the port number is not explicitly given in the URL,
+//               this string will include the implicit port number.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 410  
+32 14 Dtool__Rn_zxVw 0 6 29 403 0 14 Dtool__Rn_zxVw 439 ////////////////////////////////////////////////////////////////////
+//     Function: URLSpec::is_default_port
+//       Access: Published
+//  Description: Returns true if the port number encoded in this URL
+//               is the default port number for the scheme (or if
+//               there is no port number), or false if it is a
+//               nonstandard port.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 410  
+33 14 Dtool__Rn_rd_U 0 6 30 402 0 14 Dtool__Rn_rd_U 353 ////////////////////////////////////////////////////////////////////
+//     Function: URLSpec::get_default_port_for_scheme
+//       Access: Published, Static
+//  Description: Returns the default port number for the indicated
+//               scheme, or 0 if there is no known default.
+//////////////////////////////////////////////////////////////////// 1 6 scheme 1 412  
+34 14 Dtool__Rn_HWmv 0 6 31 412 0 14 Dtool__Rn_HWmv 304 ////////////////////////////////////////////////////////////////////
+//     Function: URLSpec::get_path
+//       Access: Published
+//  Description: Returns the path specified by the URL, or "/" if no
+//               path is specified.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 410  
+35 14 Dtool__Rn_U1HY 0 6 32 412 0 14 Dtool__Rn_U1HY 316 ////////////////////////////////////////////////////////////////////
+//     Function: URLSpec::get_query
+//       Access: Published
+//  Description: Returns the query specified by the URL, or empty
+//               string if no query is specified.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 410  
+36 14 Dtool__Rn_Xspr 0 6 33 412 0 14 Dtool__Rn_Xspr 336 ////////////////////////////////////////////////////////////////////
+//     Function: URLSpec::get_path_and_query
+//       Access: Published
+//  Description: Returns the path (or "/" if no path is specified),
+//               followed by the query if it is specified.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 410  
+37 14 Dtool__Rn_DXzo 0 6 34 403 0 14 Dtool__Rn_DXzo 350 ////////////////////////////////////////////////////////////////////
+//     Function: URLSpec::is_ssl
+//       Access: Published
+//  Description: Returns true if the URL's scheme specifies an
+//               SSL-secured protocol such as https, or false
+//               otherwise.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 410  
+38 14 Dtool__Rn_DCPV 0 6 35 412 0 14 Dtool__Rn_DCPV 255 ////////////////////////////////////////////////////////////////////
+//     Function: URLSpec::get_url
+//       Access: Published
+//  Description: Returns the complete URL specification.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 410  
+39 14 Dtool__Rn_iPvz 0 4 36 413 0 14 Dtool__Rn_iPvz 269 ////////////////////////////////////////////////////////////////////
+//     Function: URLSpec::set_scheme
+//       Access: Published
+//  Description: Replaces the scheme part of the URL specification.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 409  6 scheme 1 412  
+40 14 Dtool__Rn_OWTX 0 4 37 413 0 14 Dtool__Rn_OWTX 338 ////////////////////////////////////////////////////////////////////
+//     Function: URLSpec::set_authority
+//       Access: Published
+//  Description: Replaces the authority part of the URL specification.
+//               This includes the username, server, and port.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 409  9 authority 1 412  
+41 14 Dtool__Rn_37oh 0 4 38 413 0 14 Dtool__Rn_37oh 273 ////////////////////////////////////////////////////////////////////
+//     Function: URLSpec::set_username
+//       Access: Published
+//  Description: Replaces the username part of the URL specification.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 409  8 username 1 412  
+42 14 Dtool__Rn_zigh 0 4 39 413 0 14 Dtool__Rn_zigh 269 ////////////////////////////////////////////////////////////////////
+//     Function: URLSpec::set_server
+//       Access: Published
+//  Description: Replaces the server part of the URL specification.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 409  6 server 1 412  
+43 14 Dtool__Rn_11tS 0 4 40 413 0 14 Dtool__Rn_11tS 265 ////////////////////////////////////////////////////////////////////
+//     Function: URLSpec::set_port
+//       Access: Published
+//  Description: Replaces the port part of the URL specification.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 409  4 port 1 412  
+44 14 Dtool__Rn_U1E4 0 4 40 413 0 14 Dtool__Rn_U1E4 311 ////////////////////////////////////////////////////////////////////
+//     Function: URLSpec::set_port
+//       Access: Published
+//  Description: Replaces the port part of the URL specification,
+//               given a numeric port number.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 409  4 port 1 402  
+45 14 Dtool__Rn_JbzZ 0 4 41 413 0 14 Dtool__Rn_JbzZ 460 ////////////////////////////////////////////////////////////////////
+//     Function: URLSpec::set_server_and_port
+//       Access: Published
+//  Description: Replaces the server and port parts of the URL
+//               specification simultaneously.  The input string
+//               should be of the form "server:port", or just
+//               "server" to make the port number implicit.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 409  15 server_and_port 1 412  
+46 14 Dtool__Rn_bhX4 0 4 42 413 0 14 Dtool__Rn_bhX4 265 ////////////////////////////////////////////////////////////////////
+//     Function: URLSpec::set_path
+//       Access: Published
+//  Description: Replaces the path part of the URL specification.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 409  4 path 1 412  
+47 14 Dtool__Rn_11SR 0 4 43 413 0 14 Dtool__Rn_11SR 267 ////////////////////////////////////////////////////////////////////
+//     Function: URLSpec::set_query
+//       Access: Published
+//  Description: Replaces the query part of the URL specification.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 409  5 query 1 412  
+48 14 Dtool__Rn_Lfs6 0 4 44 413 0 14 Dtool__Rn_Lfs6 441 ////////////////////////////////////////////////////////////////////
+//     Function: URLSpec::set_url
+//       Access: Published
+//  Description: Completely replaces the URL with the indicated
+//               string.  If server_name_expected is true, it is a
+//               hint that an undecorated URL is probably a server
+//               name, not a local filename.
+//////////////////////////////////////////////////////////////////// 3 4 this 3 409  3 url 1 412  20 server_name_expected 1 403  
+49 14 Dtool__Rn_AXhy 0 4 44 413 0 14 Dtool__Rn_AXhy 441 ////////////////////////////////////////////////////////////////////
+//     Function: URLSpec::set_url
+//       Access: Published
+//  Description: Completely replaces the URL with the indicated
+//               string.  If server_name_expected is true, it is a
+//               hint that an undecorated URL is probably a server
+//               name, not a local filename.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 409  3 url 1 412  
+50 14 Dtool__Rn_0Ix1 0 6 46 412 0 14 Dtool__Rn_0Ix1 210 ////////////////////////////////////////////////////////////////////
+//     Function: URLSpec::c_str
+//       Access: Public
+//  Description:
+//////////////////////////////////////////////////////////////////// 1 4 this 3 410  
+51 14 Dtool__Rn__kB4 0 6 47 403 0 14 Dtool__Rn__kB4 210 ////////////////////////////////////////////////////////////////////
+//     Function: URLSpec::empty
+//       Access: Public
+//  Description:
+//////////////////////////////////////////////////////////////////// 1 4 this 3 410  
+52 14 Dtool__Rn_NVhO 0 6 48 414 0 14 Dtool__Rn_NVhO 211 ////////////////////////////////////////////////////////////////////
+//     Function: URLSpec::length
+//       Access: Public
+//  Description:
+//////////////////////////////////////////////////////////////////// 1 4 this 3 410  
+53 14 Dtool__Rn_4pUs 0 6 49 415 0 14 Dtool__Rn_4pUs 0 2 4 this 3 410  1 n 1 402  
+54 14 Dtool__Rn_TPRh 0 6 50 403 0 14 Dtool__Rn_TPRh 214 ////////////////////////////////////////////////////////////////////
+//     Function: URLSpec::input
+//       Access: Published
+//  Description: 
+//////////////////////////////////////////////////////////////////// 2 4 this 3 409  2 in 1 416  
+55 14 Dtool__Rn_eXk2 0 4 51 413 0 14 Dtool__Rn_eXk2 215 ////////////////////////////////////////////////////////////////////
+//     Function: URLSpec::output
+//       Access: Published
+//  Description: 
+//////////////////////////////////////////////////////////////////// 2 4 this 3 410  3 out 1 418  
+56 14 Dtool__Rn_ko8E 0 6 52 412 0 14 Dtool__Rn_ko8E 617 ////////////////////////////////////////////////////////////////////
+//     Function: URLSpec::quote
+//       Access: Published, Static
+//  Description: Returns the source string with all "unsafe"
+//               characters quoted, making a string suitable for
+//               placing in a URL.  Letters, digits, and the
+//               underscore, comma, period, and hyphen characters, as
+//               well as any included in the safe string, are left
+//               alone; all others are converted to hex
+//               representation.
+//////////////////////////////////////////////////////////////////// 2 6 source 1 412  4 safe 1 412  
+57 14 Dtool__Rn_cj8i 0 6 52 412 0 14 Dtool__Rn_cj8i 617 ////////////////////////////////////////////////////////////////////
+//     Function: URLSpec::quote
+//       Access: Published, Static
+//  Description: Returns the source string with all "unsafe"
+//               characters quoted, making a string suitable for
+//               placing in a URL.  Letters, digits, and the
+//               underscore, comma, period, and hyphen characters, as
+//               well as any included in the safe string, are left
+//               alone; all others are converted to hex
+//               representation.
+//////////////////////////////////////////////////////////////////// 1 6 source 1 412  
+58 14 Dtool__Rn_CXNb 0 6 53 412 0 14 Dtool__Rn_CXNb 330 ////////////////////////////////////////////////////////////////////
+//     Function: URLSpec::quote_plus
+//       Access: Published, Static
+//  Description: Behaves like quote() with the additional behavior of
+//               replacing spaces with plus signs.
+//////////////////////////////////////////////////////////////////// 2 6 source 1 412  4 safe 1 412  
+59 14 Dtool__Rn_o8IX 0 6 53 412 0 14 Dtool__Rn_o8IX 330 ////////////////////////////////////////////////////////////////////
+//     Function: URLSpec::quote_plus
+//       Access: Published, Static
+//  Description: Behaves like quote() with the additional behavior of
+//               replacing spaces with plus signs.
+//////////////////////////////////////////////////////////////////// 1 6 source 1 412  
+60 14 Dtool__Rn_sqPc 0 6 54 412 0 14 Dtool__Rn_sqPc 365 ////////////////////////////////////////////////////////////////////
+//     Function: URLSpec::unquote
+//       Access: Published, Static
+//  Description: Reverses the operation of quote(): converts escaped
+//               characters of the form "%xx" to their ascii
+//               equivalent.
+//////////////////////////////////////////////////////////////////// 1 6 source 1 412  
+61 14 Dtool__Rn_F1dJ 0 6 55 412 0 14 Dtool__Rn_F1dJ 415 ////////////////////////////////////////////////////////////////////
+//     Function: URLSpec::unquote_plus
+//       Access: Published, Static
+//  Description: Reverses the operation of quote_plus(): converts escaped
+//               characters of the form "%xx" to their ascii
+//               equivalent, and also converts plus signs to spaces.
+//////////////////////////////////////////////////////////////////// 1 6 source 1 412  
+62 14 Dtool__Rn_qwwt 0 6 45 412 0 14 Dtool__Rn_qwwt 0 1 4 this 3 410  
+63 14 Dtool__Rn_4tMA 0 7 58 419 267 14 Dtool__Rn_4tMA 226 ////////////////////////////////////////////////////////////////////
+//     Function: HTTPEntityTag::Constructor
+//       Access: Published
+//  Description: 
+//////////////////////////////////////////////////////////////////// 0 
+64 14 Dtool__Rn_QDIw 0 7 58 419 267 14 Dtool__Rn_QDIw 230 ////////////////////////////////////////////////////////////////////
+//     Function: HTTPEntityTag::Copy Constructor
+//       Access: Published
+//  Description:
+//////////////////////////////////////////////////////////////////// 1 4 copy 1 420  
+65 14 Dtool__Rn_5Xv8 0 7 58 419 267 14 Dtool__Rn_5Xv8 380 ////////////////////////////////////////////////////////////////////
+//     Function: HTTPEntityTag::Constructor
+//       Access: Published
+//  Description: This constructor accepts a string as formatted from
+//               an HTTP server (e.g. the tag is quoted, with an
+//               optional W/ prefix.)
+//////////////////////////////////////////////////////////////////// 1 4 text 1 412  
+66 14 Dtool__Rn_Z_ii 0 7 58 419 267 14 Dtool__Rn_Z_ii 328 ////////////////////////////////////////////////////////////////////
+//     Function: HTTPEntityTag::Constructor
+//       Access: Published
+//  Description: This constructor accepts an explicit weak flag and a
+//               literal (not quoted) tag string.
+//////////////////////////////////////////////////////////////////// 2 4 weak 1 403  3 tag 1 412  
+67 14 Dtool__Rn_F2kZ 0 6 59 419 0 14 Dtool__Rn_F2kZ 0 2 4 this 3 419  4 copy 1 420  
+68 14 Dtool__Rn_s54_ 0 6 60 403 0 14 Dtool__Rn_s54_ 525 ////////////////////////////////////////////////////////////////////
+//     Function: HTTPEntityTag::is_weak
+//       Access: Published
+//  Description: Returns true if the entity tag is marked as "weak".
+//               A consistent weak entity tag does not guarantee that
+//               its resource has not changed in any way, but it does
+//               promise that the resource has not changed in any
+//               semantically meaningful way.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 420  
+69 14 Dtool__Rn_HG7c 0 6 61 412 0 14 Dtool__Rn_HG7c 258 ////////////////////////////////////////////////////////////////////
+//     Function: HTTPEntityTag::get_tag
+//       Access: Published
+//  Description: Returns the tag as a literal string.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 420  
+70 14 Dtool__Rn_JDGH 0 6 62 412 0 14 Dtool__Rn_JDGH 372 ////////////////////////////////////////////////////////////////////
+//     Function: HTTPEntityTag::get_string
+//       Access: Published
+//  Description: Returns the entity tag formatted for sending to an
+//               HTTP server (the tag is quoted, with a conditional W/
+//               prefix).
+//////////////////////////////////////////////////////////////////// 1 4 this 3 420  
+71 14 Dtool__Rn_ICzc 0 6 63 403 0 14 Dtool__Rn_ICzc 345 ////////////////////////////////////////////////////////////////////
+//     Function: HTTPEntityTag::strong_equiv
+//       Access: Published
+//  Description: Returns true if the two tags have "strong" equivalence:
+//               they are the same tag, and both are "strong".
+//////////////////////////////////////////////////////////////////// 2 4 this 3 420  5 other 1 420  
+72 14 Dtool__Rn_uDMa 0 6 64 403 0 14 Dtool__Rn_uDMa 349 ////////////////////////////////////////////////////////////////////
+//     Function: HTTPEntityTag::weak_equiv
+//       Access: Published
+//  Description: Returns true if the two tags have "weak" equivalence:
+//               they are the same tag, and one or both may be "weak".
+//////////////////////////////////////////////////////////////////// 2 4 this 3 420  5 other 1 420  
+73 14 Dtool__Rn_uwLK 0 6 65 403 0 14 Dtool__Rn_uwLK 0 2 4 this 3 420  5 other 1 420  
+74 14 Dtool__Rn_qnpJ 0 6 66 403 0 14 Dtool__Rn_qnpJ 0 2 4 this 3 420  5 other 1 420  
+75 14 Dtool__Rn_T6L5 0 6 67 403 0 14 Dtool__Rn_T6L5 0 2 4 this 3 420  5 other 1 420  
+76 14 Dtool__Rn_dIqM 0 6 68 402 0 14 Dtool__Rn_dIqM 409 ////////////////////////////////////////////////////////////////////
+//     Function: HTTPEntityTag::compare_to
+//       Access: Published
+//  Description: Returns a number less than zero if this HTTPEntityTag
+//               sorts before the other one, greater than zero if it
+//               sorts after, or zero if they are equivalent.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 420  5 other 1 420  
+77 14 Dtool__Rn_GXUH 0 4 69 413 0 14 Dtool__Rn_GXUH 221 ////////////////////////////////////////////////////////////////////
+//     Function: HTTPEntityTag::output
+//       Access: Published
+//  Description: 
+//////////////////////////////////////////////////////////////////// 2 4 this 3 420  3 out 1 418  
+78 14 Dtool__Rn_xUCO 0 7 72 422 285 14 Dtool__Rn_xUCO 220 ////////////////////////////////////////////////////////////////////
+//     Function: HTTPDate::Constructor
+//       Access: Published
+//  Description:
+//////////////////////////////////////////////////////////////////// 0 
+79 14 Dtool__Rn_DU7n 0 7 72 422 285 14 Dtool__Rn_DU7n 225 ////////////////////////////////////////////////////////////////////
+//     Function: HTTPDate::Copy Constructor
+//       Access: Published
+//  Description:
+//////////////////////////////////////////////////////////////////// 1 4 copy 1 423  
+80 14 Dtool__Rn_2lK9 0 7 72 422 285 14 Dtool__Rn_2lK9 363 ////////////////////////////////////////////////////////////////////
+//     Function: HTTPDate::Constructor
+//       Access: Published
+//  Description: Decodes the string into a sensible date.  Returns 0
+//               (!is_valid()) if the string cannot be correctly
+//               decoded.
+//////////////////////////////////////////////////////////////////// 1 6 format 1 412  
+81 14 Dtool__Rn_i8vm 0 7 72 422 285 14 Dtool__Rn_i8vm 220 ////////////////////////////////////////////////////////////////////
+//     Function: HTTPDate::Constructor
+//       Access: Published
+//  Description:
+//////////////////////////////////////////////////////////////////// 1 4 time 1 414  
+82 14 Dtool__Rn_SJN6 0 6 73 422 0 14 Dtool__Rn_SJN6 0 2 4 this 3 422  4 copy 1 423  
+83 14 Dtool__Rn_Dz_E 0 7 74 422 285 14 Dtool__Rn_Dz_E 320 ////////////////////////////////////////////////////////////////////
+//     Function: HTTPDate::now (named constructor)
+//       Access: Published, Static
+//  Description: Returns an HTTPDate that represents the current time
+//               and date.
+//////////////////////////////////////////////////////////////////// 0 
+84 14 Dtool__Rn_XkTy 0 6 75 403 0 14 Dtool__Rn_XkTy 379 ////////////////////////////////////////////////////////////////////
+//     Function: HTTPDate::is_valid
+//       Access: Published
+//  Description: Returns true if the date is meaningful, or false if
+//               it is -1 (which generally indicates the source string
+//               could not be parsed.)
+//////////////////////////////////////////////////////////////////// 1 4 this 3 423  
+85 14 Dtool__Rn_LLsb 0 6 76 412 0 14 Dtool__Rn_LLsb 219 ////////////////////////////////////////////////////////////////////
+//     Function: HTTPDate::get_string
+//       Access: Published
+//  Description:
+//////////////////////////////////////////////////////////////////// 1 4 this 3 423  
+86 14 Dtool__Rn_iMJn 0 6 77 414 0 14 Dtool__Rn_iMJn 255 ////////////////////////////////////////////////////////////////////
+//     Function: HTTPDate::get_time
+//       Access: Published
+//  Description: Returns the date as a C time_t value.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 423  
+87 14 Dtool__Rn_b8yo 0 6 78 403 0 14 Dtool__Rn_b8yo 0 2 4 this 3 423  5 other 1 423  
+88 14 Dtool__Rn_95ho 0 6 79 403 0 14 Dtool__Rn_95ho 0 2 4 this 3 423  5 other 1 423  
+89 14 Dtool__Rn_f7Fy 0 6 80 403 0 14 Dtool__Rn_f7Fy 0 2 4 this 3 423  5 other 1 423  
+90 14 Dtool__Rn_UJHy 0 6 81 403 0 14 Dtool__Rn_UJHy 0 2 4 this 3 423  5 other 1 423  
+91 14 Dtool__Rn__D07 0 6 82 402 0 14 Dtool__Rn__D07 399 ////////////////////////////////////////////////////////////////////
+//     Function: HTTPDate::compare_to
+//       Access: Published
+//  Description: Returns a number less than zero if this HTTPDate
+//               sorts before the other one, greater than zero if it
+//               sorts after, or zero if they are equivalent.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 423  5 other 1 423  
+92 14 Dtool__Rn_jIFs 0 6 83 422 0 14 Dtool__Rn_jIFs 0 2 4 this 3 422  7 seconds 1 402  
+93 14 Dtool__Rn_q_Hs 0 6 84 422 0 14 Dtool__Rn_q_Hs 0 2 4 this 3 422  7 seconds 1 402  
+94 14 Dtool__Rn_Nh_f 0 7 85 422 285 14 Dtool__Rn_Nh_f 0 2 4 this 3 423  7 seconds 1 402  
+95 14 Dtool__Rn_Th8R 0 6 86 402 0 14 Dtool__Rn_Th8R 0 2 4 this 3 423  5 other 1 423  
+96 14 Dtool__Rn_2wBg 0 7 86 422 285 14 Dtool__Rn_2wBg 0 2 4 this 3 423  7 seconds 1 402  
+97 14 Dtool__Rn_DJiR 0 6 87 403 0 14 Dtool__Rn_DJiR 215 ////////////////////////////////////////////////////////////////////
+//     Function: HTTPDate::input
+//       Access: Published
+//  Description: 
+//////////////////////////////////////////////////////////////////// 2 4 this 3 422  2 in 1 416  
+98 14 Dtool__Rn_fj07 0 4 88 413 0 14 Dtool__Rn_fj07 216 ////////////////////////////////////////////////////////////////////
+//     Function: HTTPDate::output
+//       Access: Published
+//  Description: 
+//////////////////////////////////////////////////////////////////// 2 4 this 3 423  3 out 1 418  
+99 14 Dtool__Rn_aGVJ 0 7 91 425 309 14 Dtool__Rn_aGVJ 224 ////////////////////////////////////////////////////////////////////
+//     Function: DocumentSpec::Constructor
+//       Access: Published
+//  Description:
+//////////////////////////////////////////////////////////////////// 0 
+100 14 Dtool__Rn_rhhh 0 7 91 425 309 14 Dtool__Rn_rhhh 229 ////////////////////////////////////////////////////////////////////
+//     Function: DocumentSpec::Copy Constructor
+//       Access: Published
+//  Description:
+//////////////////////////////////////////////////////////////////// 1 4 copy 1 426  
+101 14 Dtool__Rn_BmXi 0 7 91 425 309 14 Dtool__Rn_BmXi 224 ////////////////////////////////////////////////////////////////////
+//     Function: DocumentSpec::Constructor
+//       Access: Published
+//  Description:
+//////////////////////////////////////////////////////////////////// 1 3 url 1 410  
+102 14 Dtool__Rn_ctNb 0 7 91 425 309 14 Dtool__Rn_ctNb 224 ////////////////////////////////////////////////////////////////////
+//     Function: DocumentSpec::Constructor
+//       Access: Published
+//  Description:
+//////////////////////////////////////////////////////////////////// 1 3 url 1 412  
+103 14 Dtool__Rn_pTpy 0 6 92 425 0 14 Dtool__Rn_pTpy 0 2 4 this 3 425  4 copy 1 426  
+104 14 Dtool__Rn_iL7f 0 6 93 403 0 14 Dtool__Rn_iL7f 0 2 4 this 3 426  5 other 1 426  
+105 14 Dtool__Rn_zx6X 0 6 94 403 0 14 Dtool__Rn_zx6X 0 2 4 this 3 426  5 other 1 426  
+106 14 Dtool__Rn_2Z_X 0 6 95 403 0 14 Dtool__Rn_2Z_X 0 2 4 this 3 426  5 other 1 426  
+107 14 Dtool__Rn_4ZmY 0 6 96 402 0 14 Dtool__Rn_4ZmY 224 ////////////////////////////////////////////////////////////////////
+//     Function: DocumentSpec::compare_to
+//       Access: Published
+//  Description: 
+//////////////////////////////////////////////////////////////////// 2 4 this 3 426  5 other 1 426  
+108 14 Dtool__Rn_UTc6 0 4 97 413 0 14 Dtool__Rn_UTc6 598 ////////////////////////////////////////////////////////////////////
+//     Function: DocumentSpec::set_url
+//       Access: Published
+//  Description: Changes the URL of the DocumentSpec without modifying
+//               its other properties.  Normally this would be a
+//               strange thing to do, because the tag and date are
+//               usually strongly associated with the URL.  To get a
+//               DocumentSpec pointing to a new URL, you would
+//               normally create a new DocumentSpec object.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 425  3 url 1 410  
+109 14 Dtool__Rn_UTT8 0 6 98 410 0 14 Dtool__Rn_UTT8 259 ////////////////////////////////////////////////////////////////////
+//     Function: DocumentSpec::get_url
+//       Access: Published
+//  Description: Retrieves the URL of the DocumentSpec.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 426  
+110 14 Dtool__Rn_KAZX 0 4 99 413 0 14 Dtool__Rn_KAZX 296 ////////////////////////////////////////////////////////////////////
+//     Function: DocumentSpec::set_tag
+//       Access: Published
+//  Description: Changes the identity tag associated with the
+//               DocumentSpec.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 425  3 tag 1 420  
+111 14 Dtool__Rn_bgI_ 0 6 100 403 0 14 Dtool__Rn_bgI_ 306 ////////////////////////////////////////////////////////////////////
+//     Function: DocumentSpec::has_tag
+//       Access: Published
+//  Description: Returns true if an identity tag is associated with
+//               the DocumentSpec.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 426  
+112 14 Dtool__Rn_TNmT 0 6 101 420 0 14 Dtool__Rn_TNmT 524 ////////////////////////////////////////////////////////////////////
+//     Function: DocumentSpec::get_tag
+//       Access: Published
+//  Description: Returns the identity tag associated with the
+//               DocumentSpec, if there is one.  It is an error to
+//               call this if has_tag() returns false.
+//
+//               The identity tag is set by the HTTP server to
+//               uniquely refer to a particular version of a document.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 426  
+113 14 Dtool__Rn_Hg2z 0 4 102 413 0 14 Dtool__Rn_Hg2z 315 ////////////////////////////////////////////////////////////////////
+//     Function: DocumentSpec::clear_tag
+//       Access: Published
+//  Description: Removes the identity tag associated with the
+//               DocumentSpec, if there is one.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 425  
+114 14 Dtool__Rn_Bu_L 0 4 103 413 0 14 Dtool__Rn_Bu_L 303 ////////////////////////////////////////////////////////////////////
+//     Function: DocumentSpec::set_date
+//       Access: Published
+//  Description: Changes the last-modified date associated with the
+//               DocumentSpec.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 425  4 date 1 423  
+115 14 Dtool__Rn_wwOq 0 6 104 403 0 14 Dtool__Rn_wwOq 312 ////////////////////////////////////////////////////////////////////
+//     Function: DocumentSpec::has_date
+//       Access: Published
+//  Description: Returns true if a last-modified date is associated
+//               with the DocumentSpec.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 426  
+116 14 Dtool__Rn_16s_ 0 6 105 423 0 14 Dtool__Rn_16s_ 395 ////////////////////////////////////////////////////////////////////
+//     Function: DocumentSpec::get_date
+//       Access: Published
+//  Description: Returns the last-modified date associated with the
+//               DocumentSpec, if there is one.  It is an error to
+//               call this if has_date() returns false.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 426  
+117 14 Dtool__Rn_1ns7 0 4 106 413 0 14 Dtool__Rn_1ns7 322 ////////////////////////////////////////////////////////////////////
+//     Function: DocumentSpec::clear_date
+//       Access: Published
+//  Description: Removes the last-modified date associated with the
+//               DocumentSpec, if there is one.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 425  
+118 14 Dtool__Rn_OwGy 0 4 108 413 0 14 Dtool__Rn_OwGy 1984 ////////////////////////////////////////////////////////////////////
+//     Function: DocumentSpec::set_request_mode
+//       Access: Published
+//  Description: Sets the request mode of this DocumentSpec.  This is
+//               only relevant when using the DocumentSpec to generate
+//               a request (for instance, in HTTPChannel).  This
+//               specifies whether the document request will ask the
+//               server for a newer version than the indicated
+//               version, or the exact version, neither, or either.
+//
+//               The possible values are:
+//
+//                 RM_any: ignore date and tag (if specified), and
+//                 retrieve any document that matches the URL.  For a
+//                 subrange request, if the document matches the
+//                 version indicated exactly, retrieve the subrange
+//                 only; otherwise, retrieve the entire document.
+//
+//                 RM_equal: request only the precise version of the
+//                 document that matches the particular date and/or
+//                 tag exactly, if specified; fail if this version is
+//                 not available.
+//
+//                 RM_newer: request any document that is newer than
+//                 the version indicated by the particular date and/or
+//                 tag; fail if only that version (or older versions)
+//                 are available.
+//
+//                 RM_newer_or_equal: request any document that
+//                 matches the version indicated by the particular
+//                 date and/or tag, or is a newer version; fail if
+//                 only older versions are available.
+//
+//               In any of the above, you may specify either or both
+//               of the last-modified date and the identity tag,
+//               whichever is known to the client.
+//
+//               The default mode is RM_any.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 425  12 request_mode 1 389  
+119 14 Dtool__Rn_is_z 0 6 109 389 0 14 Dtool__Rn_is_z 318 ////////////////////////////////////////////////////////////////////
+//     Function: DocumentSpec::get_request_mode
+//       Access: Published
+//  Description: Returns the request mode of this DocumentSpec.  See
+//               set_request_mode().
+//////////////////////////////////////////////////////////////////// 1 4 this 3 426  
+120 14 Dtool__Rn_aqta 0 4 111 413 0 14 Dtool__Rn_aqta 1075 ////////////////////////////////////////////////////////////////////
+//     Function: DocumentSpec::set_cache_control
+//       Access: Published
+//  Description: Specifies what kind of cached value is acceptable for
+//               this document.  Warning: some HTTP proxies may not
+//               respect this setting and may return a cached result
+//               anyway.
+//
+//                 CC_allow_cache: the normal HTTP behavior; the
+//                 server may return a cached value if it believes it
+//                 is valid.
+//
+//                 CC_revalidate: a proxy is forced to contact the
+//                 origin server and verify that is cached value is in
+//                 fact still valid before it returns it.
+//
+//                 CC_no_cache: a proxy must not return its cached
+//                 value at all, but is forced to go all the way back
+//                 to the origin server for the official document.
+//
+//               The default mode is CC_allow_cache.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 425  13 cache_control 1 390  
+121 14 Dtool__Rn_iIC1 0 6 112 390 0 14 Dtool__Rn_iIC1 320 ////////////////////////////////////////////////////////////////////
+//     Function: DocumentSpec::get_cache_control
+//       Access: Published
+//  Description: Returns the request mode of this DocumentSpec.  See
+//               set_cache_control().
+//////////////////////////////////////////////////////////////////// 1 4 this 3 426  
+122 14 Dtool__Rn_XwSU 0 6 113 403 0 14 Dtool__Rn_XwSU 391 ////////////////////////////////////////////////////////////////////
+//     Function: DocumentSpec::input
+//       Access: Published
+//  Description: Can be used to read in the DocumentSpec from a stream
+//               generated either by output() or write().  Returns
+//               true on success, false on failure.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 425  2 in 1 416  
+123 14 Dtool__Rn_g56_ 0 4 114 413 0 14 Dtool__Rn_g56_ 220 ////////////////////////////////////////////////////////////////////
+//     Function: DocumentSpec::output
+//       Access: Published
+//  Description: 
+//////////////////////////////////////////////////////////////////// 2 4 this 3 426  3 out 1 418  
+124 14 Dtool__Rn_EH_O 0 4 115 413 0 14 Dtool__Rn_EH_O 219 ////////////////////////////////////////////////////////////////////
+//     Function: DocumentSpec::write
+//       Access: Published
+//  Description: 
+//////////////////////////////////////////////////////////////////// 3 4 this 3 426  3 out 1 418  12 indent_level 1 402  
+125 14 Dtool__Rn_f_Sn 0 4 115 413 0 14 Dtool__Rn_f_Sn 219 ////////////////////////////////////////////////////////////////////
+//     Function: DocumentSpec::write
+//       Access: Published
+//  Description: 
+//////////////////////////////////////////////////////////////////// 2 4 this 3 426  3 out 1 418  
+126 14 Dtool__Rn__aVY 0 7 119 428 311 14 Dtool__Rn__aVY 247 ////////////////////////////////////////////////////////////////////
+//     Function: DownloadDb::Constructor
+//       Access: Public
+//  Description: Primarily used for testing.
+//////////////////////////////////////////////////////////////////// 0 
+127 14 Dtool__Rn_R1U1 0 7 119 428 311 14 Dtool__Rn_R1U1 273 ////////////////////////////////////////////////////////////////////
+//     Function: DownloadDb::Constructor
+//       Access: Public
+//  Description: Create a download db with these client and server dbs
+//////////////////////////////////////////////////////////////////// 2 11 server_file 1 429  11 client_file 1 429  
+128 14 Dtool__Rn_6i5v 0 7 119 428 311 14 Dtool__Rn_6i5v 273 ////////////////////////////////////////////////////////////////////
+//     Function: DownloadDb::Constructor
+//       Access: Public
+//  Description: Create a download db with these client and server dbs
+//////////////////////////////////////////////////////////////////// 2 11 server_file 1 404  11 client_file 1 429  
+129 14 Dtool__Rn_XINq 0 4 121 413 0 14 Dtool__Rn_XINq 214 ////////////////////////////////////////////////////////////////////
+//     Function: DownloadDb::output
+//       Access: Public
+//  Description:
+//////////////////////////////////////////////////////////////////// 2 4 this 3 430  3 out 1 418  
+130 14 Dtool__Rn_3Ao5 0 4 122 413 0 14 Dtool__Rn_3Ao5 213 ////////////////////////////////////////////////////////////////////
+//     Function: DownloadDb::write
+//       Access: Public
+//  Description:
+//////////////////////////////////////////////////////////////////// 2 4 this 3 430  3 out 1 418  
+131 14 Dtool__Rn_V2oK 0 4 123 413 0 14 Dtool__Rn_V2oK 225 ////////////////////////////////////////////////////////////////////
+//     Function: DownloadDb::write_version_map
+//       Access: Public
+//  Description:
+//////////////////////////////////////////////////////////////////// 2 4 this 3 430  3 out 1 418  
+132 14 Dtool__Rn_dnHR 0 6 124 403 0 14 Dtool__Rn_dnHR 208 ////////////////////////////////////////////////////////////////////
+//     Function: DownloadDb::
+//       Access: Public
+//  Description:
+//////////////////////////////////////////////////////////////////// 2 4 this 3 428  4 file 1 429  
+133 14 Dtool__Rn_tu0x 0 6 125 403 0 14 Dtool__Rn_tu0x 208 ////////////////////////////////////////////////////////////////////
+//     Function: DownloadDb::
+//       Access: Public
+//  Description:
+//////////////////////////////////////////////////////////////////// 2 4 this 3 428  4 file 1 429  
+134 14 Dtool__Rn_d__n 0 6 126 402 0 14 Dtool__Rn_d__n 208 ////////////////////////////////////////////////////////////////////
+//     Function: DownloadDb::
+//       Access: Public
+//  Description:
+//////////////////////////////////////////////////////////////////// 1 4 this 3 430  
+135 14 Dtool__Rn_Xid5 0 6 127 402 0 14 Dtool__Rn_Xid5 208 ////////////////////////////////////////////////////////////////////
+//     Function: DownloadDb::
+//       Access: Public
+//  Description:
+//////////////////////////////////////////////////////////////////// 1 4 this 3 430  
+136 14 Dtool__Rn_C6SH 0 6 128 412 0 14 Dtool__Rn_C6SH 208 ////////////////////////////////////////////////////////////////////
+//     Function: DownloadDb::
+//       Access: Public
+//  Description:
+//////////////////////////////////////////////////////////////////// 2 4 this 3 430  5 index 1 402  
+137 14 Dtool__Rn_tjxY 0 6 129 412 0 14 Dtool__Rn_tjxY 208 ////////////////////////////////////////////////////////////////////
+//     Function: DownloadDb::
+//       Access: Public
+//  Description:
+//////////////////////////////////////////////////////////////////// 2 4 this 3 430  5 index 1 402  
+138 14 Dtool__Rn_QDcT 0 6 130 402 0 14 Dtool__Rn_QDcT 208 ////////////////////////////////////////////////////////////////////
+//     Function: DownloadDb::
+//       Access: Public
+//  Description:
+//////////////////////////////////////////////////////////////////// 2 4 this 3 430  6 mfname 1 412  
+139 14 Dtool__Rn_5_ms 0 4 131 413 0 14 Dtool__Rn_5_ms 208 ////////////////////////////////////////////////////////////////////
+//     Function: DownloadDb::
+//       Access: Public
+//  Description:
+//////////////////////////////////////////////////////////////////// 3 4 this 3 428  6 mfname 1 412  4 size 1 402  
+140 14 Dtool__Rn_MBMJ 0 6 132 402 0 14 Dtool__Rn_MBMJ 208 ////////////////////////////////////////////////////////////////////
+//     Function: DownloadDb::
+//       Access: Public
+//  Description:
+//////////////////////////////////////////////////////////////////// 3 4 this 3 428  6 mfname 1 412  4 size 1 402  
+141 14 Dtool__Rn_Ty7k 0 6 133 402 0 14 Dtool__Rn_Ty7k 208 ////////////////////////////////////////////////////////////////////
+//     Function: DownloadDb::
+//       Access: Public
+//  Description:
+//////////////////////////////////////////////////////////////////// 2 4 this 3 430  6 mfname 1 412  
+142 14 Dtool__Rn__6E_ 0 4 134 413 0 14 Dtool__Rn__6E_ 208 ////////////////////////////////////////////////////////////////////
+//     Function: DownloadDb::
+//       Access: Public
+//  Description:
+//////////////////////////////////////////////////////////////////// 3 4 this 3 428  6 mfname 1 412  4 size 1 402  
+143 14 Dtool__Rn_yAuk 0 6 135 408 0 14 Dtool__Rn_yAuk 208 ////////////////////////////////////////////////////////////////////
+//     Function: DownloadDb::
+//       Access: Public
+//  Description:
+//////////////////////////////////////////////////////////////////// 2 4 this 3 430  6 mfname 1 412  
+144 14 Dtool__Rn_2HN2 0 6 136 408 0 14 Dtool__Rn_2HN2 208 ////////////////////////////////////////////////////////////////////
+//     Function: DownloadDb::
+//       Access: Public
+//  Description:
+//////////////////////////////////////////////////////////////////// 2 4 this 3 430  6 mfname 1 412  
+145 14 Dtool__Rn_dYJ4 0 4 137 413 0 14 Dtool__Rn_dYJ4 208 ////////////////////////////////////////////////////////////////////
+//     Function: DownloadDb::
+//       Access: Public
+//  Description:
+//////////////////////////////////////////////////////////////////// 2 4 this 3 428  6 mfname 1 412  
+146 14 Dtool__Rn_0bjV 0 4 138 413 0 14 Dtool__Rn_0bjV 208 ////////////////////////////////////////////////////////////////////
+//     Function: DownloadDb::
+//       Access: Public
+//  Description:
+//////////////////////////////////////////////////////////////////// 2 4 this 3 428  6 mfname 1 412  
+147 14 Dtool__Rn_wEYN 0 4 139 413 0 14 Dtool__Rn_wEYN 208 ////////////////////////////////////////////////////////////////////
+//     Function: DownloadDb::
+//       Access: Public
+//  Description:
+//////////////////////////////////////////////////////////////////// 2 4 this 3 428  6 mfname 1 412  
+148 14 Dtool__Rn_BgOD 0 4 140 413 0 14 Dtool__Rn_BgOD 208 ////////////////////////////////////////////////////////////////////
+//     Function: DownloadDb::
+//       Access: Public
+//  Description:
+//////////////////////////////////////////////////////////////////// 2 4 this 3 428  6 mfname 1 412  
+149 14 Dtool__Rn_vRAy 0 6 141 402 0 14 Dtool__Rn_vRAy 208 ////////////////////////////////////////////////////////////////////
+//     Function: DownloadDb::
+//       Access: Public
+//  Description:
+//////////////////////////////////////////////////////////////////// 2 4 this 3 430  6 mfname 1 412  
+150 14 Dtool__Rn_lMf6 0 6 142 412 0 14 Dtool__Rn_lMf6 208 ////////////////////////////////////////////////////////////////////
+//     Function: DownloadDb::
+//       Access: Public
+//  Description:
+//////////////////////////////////////////////////////////////////// 3 4 this 3 430  6 mfname 1 412  5 index 1 402  
+151 14 Dtool__Rn_OqV1 0 6 143 403 0 14 Dtool__Rn_OqV1 208 ////////////////////////////////////////////////////////////////////
+//     Function: DownloadDb::
+//       Access: Public
+//  Description:
+//////////////////////////////////////////////////////////////////// 2 4 this 3 430  6 mfname 1 412  
+152 14 Dtool__Rn_Ng5P 0 6 144 403 0 14 Dtool__Rn_Ng5P 375 ////////////////////////////////////////////////////////////////////
+//     Function: DownloadDb::
+//       Access: Public
+//  Description: A multifile is complete when it is completely
+//               downloaded. Note: it may already be decompressed
+//               or extracted and it is still complete
+//////////////////////////////////////////////////////////////////// 2 4 this 3 430  6 mfname 1 412  
+153 14 Dtool__Rn_SEoI 0 6 145 403 0 14 Dtool__Rn_SEoI 208 ////////////////////////////////////////////////////////////////////
+//     Function: DownloadDb::
+//       Access: Public
+//  Description:
+//////////////////////////////////////////////////////////////////// 2 4 this 3 430  6 mfname 1 412  
+154 14 Dtool__Rn_8yC1 0 6 146 403 0 14 Dtool__Rn_8yC1 208 ////////////////////////////////////////////////////////////////////
+//     Function: DownloadDb::
+//       Access: Public
+//  Description:
+//////////////////////////////////////////////////////////////////// 2 4 this 3 430  6 mfname 1 412  
+155 14 Dtool__Rn_zdCE 0 7 147 433 0 14 Dtool__Rn_zdCE 260 ////////////////////////////////////////////////////////////////////
+//     Function: DownloadDb::
+//       Access: Public
+//  Description: Return the hash value of the file we are working on
+//////////////////////////////////////////////////////////////////// 2 4 this 3 430  6 mfname 1 412  
+156 14 Dtool__Rn_iMJh 0 4 148 413 0 14 Dtool__Rn_iMJh 253 ////////////////////////////////////////////////////////////////////
+//     Function: DownloadDb::
+//       Access: Public
+//  Description: Set the hash value of file we are working on
+//////////////////////////////////////////////////////////////////// 3 4 this 3 428  6 mfname 1 412  3 val 1 433  
+157 14 Dtool__Rn_1YhV 0 7 149 433 0 14 Dtool__Rn_1YhV 249 ////////////////////////////////////////////////////////////////////
+//     Function: DownloadDb::
+//       Access: Public
+//  Description: Return the hash value of the server file
+//////////////////////////////////////////////////////////////////// 2 4 this 3 430  6 mfname 1 412  
+158 14 Dtool__Rn_7_my 0 4 150 413 0 14 Dtool__Rn_7_my 253 ////////////////////////////////////////////////////////////////////
+//     Function: DownloadDb::
+//       Access: Public
+//  Description: Set the hash value of file we are working on
+//////////////////////////////////////////////////////////////////// 3 4 this 3 428  6 mfname 1 412  3 val 1 433  
+159 14 Dtool__Rn_U638 0 4 151 413 0 14 Dtool__Rn_U638 208 ////////////////////////////////////////////////////////////////////
+//     Function: DownloadDb::
+//       Access: Public
+//  Description:
+//////////////////////////////////////////////////////////////////// 2 4 this 3 428  6 mfname 1 412  
+160 14 Dtool__Rn_uOKg 0 4 152 413 0 14 Dtool__Rn_uOKg 208 ////////////////////////////////////////////////////////////////////
+//     Function: DownloadDb::
+//       Access: Public
+//  Description:
+//////////////////////////////////////////////////////////////////// 2 4 this 3 428  13 server_mfname 1 412  
+161 14 Dtool__Rn_rRXT 0 4 153 413 0 14 Dtool__Rn_rRXT 208 ////////////////////////////////////////////////////////////////////
+//     Function: DownloadDb::
+//       Access: Public
+//  Description:
+//////////////////////////////////////////////////////////////////// 2 4 this 3 428  6 mfname 1 412  
+162 14 Dtool__Rn_sfrv 0 4 154 413 0 14 Dtool__Rn_sfrv 311 ////////////////////////////////////////////////////////////////////
+//     Function: DownloadDb::create_new_server_db
+//       Access: Public
+//  Description: Used on the server side makefiles to create a
+//               new clean server db
+//////////////////////////////////////////////////////////////////// 1 4 this 3 428  
+163 14 Dtool__Rn_cfl4 0 4 155 413 0 14 Dtool__Rn_cfl4 208 ////////////////////////////////////////////////////////////////////
+//     Function: DownloadDb::
+//       Access: Public
+//  Description:
+//////////////////////////////////////////////////////////////////// 5 4 this 3 428  6 mfname 1 412  5 phase 1 408  4 size 1 402  6 status 1 402  
+164 14 Dtool__Rn_RAQv 0 4 156 413 0 14 Dtool__Rn_RAQv 208 ////////////////////////////////////////////////////////////////////
+//     Function: DownloadDb::
+//       Access: Public
+//  Description:
+//////////////////////////////////////////////////////////////////// 3 4 this 3 428  6 mfname 1 412  5 fname 1 412  
+165 14 Dtool__Rn_Qsdt 0 7 157 435 0 14 Dtool__Rn_Qsdt 218 ////////////////////////////////////////////////////////////////////
+//     Function: DownloadDb::read_db
+//       Access: Published
+//  Description:
+//////////////////////////////////////////////////////////////////// 3 4 this 3 428  4 file 1 429  16 want_server_info 1 403  
+166 14 Dtool__Rn_UwJj 0 7 157 435 0 14 Dtool__Rn_UwJj 218 ////////////////////////////////////////////////////////////////////
+//     Function: DownloadDb::read_db
+//       Access: Published
+//  Description:
+//////////////////////////////////////////////////////////////////// 3 4 this 3 428  4 file 1 404  16 want_server_info 1 403  
+167 14 Dtool__Rn_M7K5 0 6 158 403 0 14 Dtool__Rn_M7K5 219 ////////////////////////////////////////////////////////////////////
+//     Function: DownloadDb::write_db
+//       Access: Published
+//  Description:
+//////////////////////////////////////////////////////////////////// 4 4 this 3 428  4 file 1 429  2 db 1 435  16 want_server_info 1 403  
+168 14 Dtool__Rn_m3aE 0 4 159 413 0 14 Dtool__Rn_m3aE 433 ////////////////////////////////////////////////////////////////////
+//     Function: DownloadDb::add_version
+//       Access: Published
+//  Description: Appends a new version of the file onto the end of the
+//               list, or changes the hash associated with a version
+//               previously added.
+//
+//               Note: version numbers start at 1
+//////////////////////////////////////////////////////////////////// 4 4 this 3 428  4 name 1 399  4 hash 1 436  7 version 1 402  
+169 14 Dtool__Rn_05Zn 0 4 160 413 0 14 Dtool__Rn_05Zn 330 ////////////////////////////////////////////////////////////////////
+//     Function: DownloadDb::insert_new_version
+//       Access: Published
+//  Description: Inserts a new version 1 copy of the file, sliding all
+//               the other versions up by one.
+//////////////////////////////////////////////////////////////////// 3 4 this 3 428  4 name 1 399  4 hash 1 436  
+170 14 Dtool__Rn_VFEb 0 6 161 403 0 14 Dtool__Rn_VFEb 404 ////////////////////////////////////////////////////////////////////
+//     Function: DownloadDb::has_version
+//       Access: Published
+//  Description: Returns true if the indicated file has version
+//               information, false otherwise.  Some files recorded in
+//               the database may not bother to track versions.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 430  4 name 1 399  
+171 14 Dtool__Rn_bMUC 0 6 162 402 0 14 Dtool__Rn_bMUC 306 ////////////////////////////////////////////////////////////////////
+//     Function: DownloadDb::get_num_versions
+//       Access: Published
+//  Description: Returns the number of versions stored for the
+//               indicated file.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 430  4 name 1 399  
+172 14 Dtool__Rn_LJWU 0 4 163 413 0 14 Dtool__Rn_LJWU 394 ////////////////////////////////////////////////////////////////////
+//     Function: DownloadDb::set_num_versions
+//       Access: Published
+//  Description: Reduces the number of versions of a particular file
+//               stored in the ddb by throwing away all versions
+//               higher than the indicated index.
+//////////////////////////////////////////////////////////////////// 3 4 this 3 428  4 name 1 399  12 num_versions 1 402  
+173 14 Dtool__Rn_eTF2 0 6 164 402 0 14 Dtool__Rn_eTF2 440 ////////////////////////////////////////////////////////////////////
+//     Function: DownloadDb::get_version
+//       Access: Published
+//  Description: Returns the version number of this particular file,
+//               determined by looking up the hash generated from the
+//               file.  Returns -1 if the version number cannot be
+//               determined.
+//////////////////////////////////////////////////////////////////// 3 4 this 3 430  4 name 1 399  4 hash 1 436  
+174 14 Dtool__Rn_6zuc 0 6 165 436 0 14 Dtool__Rn_6zuc 318 ////////////////////////////////////////////////////////////////////
+//     Function: DownloadDb::get_hash
+//       Access: Published
+//  Description: Returns the MD5 hash associated with the indicated
+//               version of the indicated file.
+//////////////////////////////////////////////////////////////////// 3 4 this 3 430  4 name 1 399  7 version 1 402  
+175 14 Dtool__Rn_UQPe 0 7 169 438 360 14 Dtool__Rn_UQPe 221 ////////////////////////////////////////////////////////////////////
+//     Function: Extractor::Constructor
+//       Access: Published
+//  Description:
+//////////////////////////////////////////////////////////////////// 0 
+176 14 Dtool__Rn_szJD 0 6 171 403 0 14 Dtool__Rn_szJD 392 ////////////////////////////////////////////////////////////////////
+//     Function: Extractor::set_multifile
+//       Access: Published
+//  Description: Specifies the filename of the Multifile that the
+//               Extractor will read.  Returns true on success, false
+//               if the mulifile name is invalid.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 438  14 multifile_name 1 399  
+177 14 Dtool__Rn_bwYp 0 4 172 413 0 14 Dtool__Rn_bwYp 453 ////////////////////////////////////////////////////////////////////
+//     Function: Extractor::set_extract_dir
+//       Access: Published
+//  Description: Specifies the directory into which all extracted
+//               subfiles will be written.  Relative paths of subfiles
+//               within the Multifile will be written as relative
+//               paths to this directory.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 438  11 extract_dir 1 399  
+178 14 Dtool__Rn_ZFSE 0 4 173 413 0 14 Dtool__Rn_ZFSE 368 ////////////////////////////////////////////////////////////////////
+//     Function: Extractor::reset
+//       Access: Published
+//  Description: Interrupts the Extractor in the middle of its
+//               business and makes it ready to accept a new list of
+//               subfiles to extract.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 438  
+179 14 Dtool__Rn_22R_ 0 6 174 403 0 14 Dtool__Rn_22R_ 391 ////////////////////////////////////////////////////////////////////
+//     Function: Extractor::request_subfile
+//       Access: Published
+//  Description: Requests a particular subfile to be extracted when
+//               step() or run() is called.  Returns true if the
+//               subfile exists, false otherwise.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 438  12 subfile_name 1 399  
+180 14 Dtool__Rn_RYjW 0 6 175 402 0 14 Dtool__Rn_RYjW 334 ////////////////////////////////////////////////////////////////////
+//     Function: Extractor::request_all_subfiles
+//       Access: Published
+//  Description: Requests all subfiles in the Multifile to be
+//               extracted.  Returns the number requested.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 438  
+181 14 Dtool__Rn_Ccut 0 6 176 402 0 14 Dtool__Rn_Ccut 695 ////////////////////////////////////////////////////////////////////
+//     Function: Extractor::step
+//       Access: Published
+//  Description: After all of the requests have been made via
+//               request_file() or request_all_subfiles(), call step()
+//               repeatedly until it stops returning EU_ok.
+//
+//               step() extracts the next small unit of data from the
+//               Multifile.  Returns EU_ok if progress is continuing,
+//               EU_error_abort if there is a problem, or EU_success
+//               when the last piece has been extracted.
+//
+//               Also see run().
+//////////////////////////////////////////////////////////////////// 1 4 this 3 438  
+182 14 Dtool__Rn_htp3 0 6 177 408 0 14 Dtool__Rn_htp3 292 ////////////////////////////////////////////////////////////////////
+//     Function: Extractor::get_progress
+//       Access: Public
+//  Description: Returns the fraction of the Multifile extracted so
+//               far.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 439  
+183 14 Dtool__Rn_aBlQ 0 6 178 403 0 14 Dtool__Rn_aBlQ 674 ////////////////////////////////////////////////////////////////////
+//     Function: Extractor::run
+//       Access: Published
+//  Description: A convenience function to extract the Multifile all
+//               at once, when you don't care about doing it in the
+//               background.
+//
+//               First, call request_file() or request_all_files() to
+//               specify the files you would like to extract, then
+//               call run() to do the extraction.  Also see step() for
+//               when you would like the extraction to happen as a
+//               background task.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 438  
+184 14 Dtool__Rn_Zfxv 0 7 181 441 376 14 Dtool__Rn_Zfxv 224 ////////////////////////////////////////////////////////////////////
+//     Function: MultiplexStream::Constructor
+//       Access: Public
+//  Description:
+//////////////////////////////////////////////////////////////////// 0 
+185 14 Dtool__Rn_ZXC6 0 4 182 413 0 14 Dtool__Rn_ZXC6 379 ////////////////////////////////////////////////////////////////////
+//     Function: MultiplexStream::add_ostream
+//       Access: Public
+//  Description: Adds the indicated generic ostream to the multiplex
+//               output.  The ostream will receive whatever data is
+//               sent to the pipe.
+//////////////////////////////////////////////////////////////////// 3 4 this 3 441  3 out 1 418  12 delete_later 1 403  
+186 14 Dtool__Rn_dq5z 0 4 182 413 0 14 Dtool__Rn_dq5z 379 ////////////////////////////////////////////////////////////////////
+//     Function: MultiplexStream::add_ostream
+//       Access: Public
+//  Description: Adds the indicated generic ostream to the multiplex
+//               output.  The ostream will receive whatever data is
+//               sent to the pipe.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 441  3 out 1 418  
+187 14 Dtool__Rn_FGvk 0 6 183 403 0 14 Dtool__Rn_FGvk 335 ////////////////////////////////////////////////////////////////////
+//     Function: MultiplexStream::add_stdio_file
+//       Access: Public
+//  Description: Adds the given file, previously opened using the C
+//               stdio library, to the multiplex output.
+//////////////////////////////////////////////////////////////////// 3 4 this 3 441  4 file 1 442  15 close_when_done 1 403  
+188 14 Dtool__Rn_k5Dq 0 4 184 413 0 14 Dtool__Rn_k5Dq 266 ////////////////////////////////////////////////////////////////////
+//     Function: MultiplexStream::add_standard_output
+//       Access: Public
+//  Description: Adds the standard output channel.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 441  
+189 14 Dtool__Rn_rLNF 0 6 185 403 0 14 Dtool__Rn_rLNF 400 ////////////////////////////////////////////////////////////////////
+//     Function: MultiplexStream::add_file
+//       Access: Public
+//  Description: Adds the given file to the multiplex output.  The
+//               file is opened in append mode with line buffering.
+//               Returns false if the file cannot be opened.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 441  4 file 1 429  
+190 14 Dtool__Rn_JUTf 0 4 186 413 0 14 Dtool__Rn_JUTf 542 ////////////////////////////////////////////////////////////////////
+//     Function: MultiplexStream::add_system_debug
+//       Access: Public
+//  Description: Adds the system debug output the the multiplex
+//               output.  This may map to a syslog or some such
+//               os-specific output system.  It may do nothing on a
+//               particular system.
+//
+//               Presently, this maps only to OutputDebugString() on
+//               Windows.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 441  
+191 14 Dtool__Rn_JH3n 0 4 187 413 0 14 Dtool__Rn_JH3n 270 ////////////////////////////////////////////////////////////////////
+//     Function: MultiplexStream::flush
+//       Access: Public
+//  Description: Forces out all output that hasn't yet been written.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 441  
+192 14 Dtool__Rn_KnUw 0 7 191 444 383 14 Dtool__Rn_KnUw 225 ////////////////////////////////////////////////////////////////////
+//     Function: StringStream::Constructor
+//       Access: Published
+//  Description: 
+//////////////////////////////////////////////////////////////////// 0 
+193 14 Dtool__Rn_heLC 0 7 191 444 383 14 Dtool__Rn_heLC 318 ////////////////////////////////////////////////////////////////////
+//     Function: StringStream::Constructor
+//       Access: Published
+//  Description: This version of the constructor preloads the buffer
+//               with the indicated data.
+//////////////////////////////////////////////////////////////////// 1 6 source 1 412  
+194 14 Dtool__Rn_V15i 0 4 192 413 0 14 Dtool__Rn_V15i 243 ////////////////////////////////////////////////////////////////////
+//     Function: StringStream::clear_data
+//       Access: Published
+//  Description: Empties the buffer.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 444  
+195 14 Dtool__Rn_74S2 0 6 193 414 0 14 Dtool__Rn_74S2 319 ////////////////////////////////////////////////////////////////////
+//     Function: StringStream::get_data_size
+//       Access: Published
+//  Description: Returns the number of characters available to be read
+//               from the data stream.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 444  
+196 14 Dtool__Rn__ccq 0 6 194 412 0 14 Dtool__Rn__ccq 274 ////////////////////////////////////////////////////////////////////
+//     Function: StringStream::get_data
+//       Access: Published
+//  Description: Returns the contents of the data stream as a string.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 444  
+197 14 Dtool__Rn_JWYJ 0 4 195 413 0 14 Dtool__Rn_JWYJ 311 ////////////////////////////////////////////////////////////////////
+//     Function: StringStream::set_data
+//       Access: Published
+//  Description: Replaces the contents of the data stream.  This
+//               implicitly reseeks to 0.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 444  4 data 1 412  
+198 14 Dtool__Rn_SY78 0 4 196 413 0 14 Dtool__Rn_SY78 307 ////////////////////////////////////////////////////////////////////
+//     Function: StringStream::swap_data
+//       Access: Published
+//  Description: Swaps the indicated buffer for the contents of the
+//               internal buffer.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 444  4 data 1 445  
+199 14 Dtool__Rn_Zj2d 0 6 166 447 0 14 Dtool__Rn_Zj2d 0 1 4 name 1 429  
+200 14 Dtool__Rn_wHLZ 0 6 167 447 0 14 Dtool__Rn_wHLZ 0 1 4 name 1 429  
+65
+384 12 Decompressor 0 26625 12 Decompressor 12 Decompressor 0 0 0 1 201 202 0 4 203 204 205 206 0 0 0 0 0 319
+////////////////////////////////////////////////////////////////////
+//       Class : Decompressor
+// Description : This manages run-time decompression of a
+//               zlib-compressed stream, as a background or foreground
+//               task.
+////////////////////////////////////////////////////////////////////
+
+385 7 URLSpec 0 141313 7 URLSpec 7 URLSpec 0 0 0 1 207 254 0 45 208 209 210 211 212 213 214 215 216 217 218 219 220 221 222 223 224 225 226 227 228 229 230 231 232 233 234 235 236 237 238 239 240 241 242 244 245 246 247 248 249 250 251 252 253 0 1 243 0 0 0 437
+////////////////////////////////////////////////////////////////////
+//       Class : URLSpec
+// Description : A container for a URL, e.g. "http://server:port/path".
+//
+//               The URLSpec object is similar to a Filename in that
+//               it contains logic to identify the various parts of a
+//               URL and return (or modify) them separately.
+////////////////////////////////////////////////////////////////////
+
+386 13 HTTPEntityTag 0 141313 13 HTTPEntityTag 13 HTTPEntityTag 0 0 0 1 255 267 0 11 256 257 258 259 260 261 262 263 264 265 266 0 0 0 0 0 404
+////////////////////////////////////////////////////////////////////
+//       Class : HTTPEntityTag
+// Description : A container for an "entity tag" from an HTTP server.
+//               This is used to identify a particular version of a
+//               document or resource, particularly useful for
+//               verifying caches.
+////////////////////////////////////////////////////////////////////
+
+387 8 HTTPDate 0 141313 8 HTTPDate 8 HTTPDate 0 0 0 1 268 285 0 16 269 270 271 272 273 274 275 276 277 278 279 280 281 282 283 284 0 0 0 0 0 466
+////////////////////////////////////////////////////////////////////
+//       Class : HTTPDate
+// Description : A container for an HTTP-legal time/date indication.
+//               This can accept a string from an HTTP header and will
+//               decode it into a C time_t value; conversely, it can
+//               accept a time_t value and encode it for output as a
+//               string.
+////////////////////////////////////////////////////////////////////
+
+388 12 DocumentSpec 0 141313 12 DocumentSpec 12 DocumentSpec 0 0 0 1 286 309 0 22 287 288 289 290 291 292 293 294 295 296 297 298 299 300 301 302 303 304 305 306 307 308 0 0 0 0 2 389 390 562
+////////////////////////////////////////////////////////////////////
+//       Class : DocumentSpec
+// Description : A descriptor that refers to a particular version of a
+//               document.  This includes the URL of the document and
+//               its identity tag and last-modified dates.
+//
+//               The DocumentSpec may also be used to request a newer
+//               document than a particular one if available, for
+//               instance to refresh a cached document.
+////////////////////////////////////////////////////////////////////
+
+389 11 RequestMode 0 794624 25 DocumentSpec::RequestMode 25 DocumentSpec::RequestMode 388 0 0 0 0 0 0 0 0 0 4 6 RM_any 20 DocumentSpec::RM_any 0
+0 8 RM_equal 22 DocumentSpec::RM_equal 0
+1 8 RM_newer 22 DocumentSpec::RM_newer 0
+2 17 RM_equal_or_newer 31 DocumentSpec::RM_equal_or_newer 0
+3 0 0
+
+390 12 CacheControl 0 794624 26 DocumentSpec::CacheControl 26 DocumentSpec::CacheControl 388 0 0 0 0 0 0 0 0 0 3 14 CC_allow_cache 28 DocumentSpec::CC_allow_cache 0
+0 13 CC_revalidate 27 DocumentSpec::CC_revalidate 0
+1 11 CC_no_cache 25 DocumentSpec::CC_no_cache 0
+2 0 0
+
+391 10 DownloadDb 0 26625 10 DownloadDb 10 DownloadDb 0 0 0 1 310 311 0 45 312 313 314 315 316 317 318 319 320 321 322 323 324 325 326 327 328 329 330 331 332 333 334 335 336 337 338 339 340 341 342 343 344 345 346 347 348 349 350 351 352 353 354 355 356 0 0 0 0 1 392 594
+////////////////////////////////////////////////////////////////////
+//       Class : DownloadDb
+// Description : A listing of files within multifiles for management
+//               of client-side synchronization with a server-provided
+//               set of files.
+//
+//               This class manages one copy of the database for the
+//               client, representing the files on the client system,
+//               and another copy for the server, representing the
+//               files the server has available.
+////////////////////////////////////////////////////////////////////
+
+392 6 Status 0 794624 18 DownloadDb::Status 18 DownloadDb::Status 391 0 0 0 0 0 0 0 0 0 4 17 Status_incomplete 29 DownloadDb::Status_incomplete 0
+0 15 Status_complete 27 DownloadDb::Status_complete 0
+1 19 Status_decompressed 31 DownloadDb::Status_decompressed 0
+2 16 Status_extracted 28 DownloadDb::Status_extracted 0
+3 0 213
+// Status of a multifile is stored in this enum
+// Note these values are in increasing order of "doneness"
+// So if you are decompressed, you are complete
+// If you are extracted, you are decompressed and complete
+
+393 9 Extractor 0 26625 9 Extractor 9 Extractor 0 0 0 1 359 360 0 8 361 362 363 364 365 366 367 368 0 0 0 0 0 862
+////////////////////////////////////////////////////////////////////
+//       Class : Extractor
+// Description : This class automatically extracts the contents of a
+//               Multifile to the current directory (or to a specified
+//               directory) in the background.
+//
+//               It is designed to limit its use of system resources
+//               and run unobtrusively in the background.  After
+//               specifying the files you wish to extract via repeated
+//               calls to request_subfile(), begin the process by
+//               calling run() repeatedly.  Each call to run()
+//               extracts another small portion of the Multifile.
+//               Call run() whenever you have spare cycles until run()
+//               returns EU_success.
+////////////////////////////////////////////////////////////////////
+
+394 15 MultiplexStream 0 141313 15 MultiplexStream 15 MultiplexStream 0 0 0 1 369 376 0 6 370 371 372 373 374 375 0 0 1 0 395 0 0 0 0 544
+////////////////////////////////////////////////////////////////////
+//       Class : MultiplexStream
+// Description : This is a special ostream that forwards the data that
+//               is written to it to any number of other sources, for
+//               instance other ostreams, or explicitly to a disk file
+//               or to system logging utilities.  It's a very handy
+//               thing to set Notify to refer to when running in batch
+//               mode.
+////////////////////////////////////////////////////////////////////
+
+395 7 ostream 0 2049 7 ostream 7 ostream 0 0 0 0 0 0 0 0 0 0 0 0 0
+
+396 12 StringStream 0 141313 12 StringStream 12 StringStream 0 0 0 1 377 383 0 5 378 379 380 381 382 0 0 1 0 397 0 0 0 0 346
+////////////////////////////////////////////////////////////////////
+//       Class : StringStream
+// Description : A bi-directional stream object that reads and writes
+//               data to an internal buffer, which can be retrieved
+//               and/or set as a string.
+////////////////////////////////////////////////////////////////////
+
+397 8 iostream 0 2049 8 iostream 8 iostream 0 0 0 0 0 0 0 0 0 0 0 0 0
+
+398 14 Decompressor * 0 8576 14 Decompressor * 14 Decompressor * 0 0 384 0 0 0 0 0 0 0 0 0 0
+
+399 16 Filename const * 0 8576 16 Filename const * 16 Filename const * 0 0 400 0 0 0 0 0 0 0 0 0 0
+
+400 14 Filename const 0 8832 14 Filename const 14 Filename const 0 0 401 0 0 0 0 0 0 0 0 0 0
+
+401 8 Filename 0 2048 8 Filename 8 Filename 0 0 0 0 0 0 0 0 0 0 0 0 869
+////////////////////////////////////////////////////////////////////
+//       Class : Filename
+// Description : The name of a file, such as a texture file or an Egg
+//               file.  Stores the full pathname, and includes
+//               functions for extracting out the directory prefix
+//               part and the file extension and stuff.
+//
+//               A Filename is also aware of the mapping between the
+//               Unix-like filename convention we use internally, and
+//               the local OS's specific filename convention, and it
+//               knows how to perform basic OS-specific I/O, like
+//               testing for file existence and searching a
+//               searchpath, as well as the best way to open an
+//               fstream for reading or writing.
+////////////////////////////////////////////////////////////////////
+
+402 3 int 0 8194 3 int 3 int 0 1 0 0 0 0 0 0 0 0 0 0 0
+
+403 4 bool 0 8194 4 bool 4 bool 0 4 0 0 0 0 0 0 0 0 0 0 0
+
+404 9 Ramfile * 0 8576 9 Ramfile * 9 Ramfile * 0 0 405 0 0 0 0 0 0 0 0 0 0
+
+405 7 Ramfile 0 2048 7 Ramfile 7 Ramfile 0 0 0 0 0 0 0 0 0 0 0 0 271
+////////////////////////////////////////////////////////////////////
+//       Class : Ramfile
+// Description : An in-memory buffer specifically designed for
+//               downloading files to memory.
+////////////////////////////////////////////////////////////////////
+
+406 20 Decompressor const * 0 8576 20 Decompressor const * 20 Decompressor const * 0 0 407 0 0 0 0 0 0 0 0 0 0
+
+407 18 Decompressor const 0 8832 18 Decompressor const 18 Decompressor const 0 0 384 0 0 0 0 0 0 0 0 0 0
+
+408 5 float 0 8194 5 float 5 float 0 2 0 0 0 0 0 0 0 0 0 0 0
+
+409 9 URLSpec * 0 8576 9 URLSpec * 9 URLSpec * 0 0 385 0 0 0 0 0 0 0 0 0 0
+
+410 15 URLSpec const * 0 8576 15 URLSpec const * 15 URLSpec const * 0 0 411 0 0 0 0 0 0 0 0 0 0
+
+411 13 URLSpec const 0 8832 13 URLSpec const 13 URLSpec const 0 0 385 0 0 0 0 0 0 0 0 0 0
+
+412 13 atomic string 0 2 13 atomic string 13 atomic string 0 7 0 0 0 0 0 0 0 0 0 0 0
+
+413 4 void 0 8194 4 void 4 void 0 6 0 0 0 0 0 0 0 0 0 0 0
+
+414 12 unsigned int 0 8198 12 unsigned int 12 unsigned int 0 1 0 0 0 0 0 0 0 0 0 0 0
+
+415 4 char 0 8194 4 char 4 char 0 5 0 0 0 0 0 0 0 0 0 0 0
+
+416 9 istream * 0 8576 9 istream * 9 istream * 0 0 417 0 0 0 0 0 0 0 0 0 0
+
+417 7 istream 0 2048 7 istream 7 istream 0 0 0 0 0 0 0 0 0 0 0 0 0
+
+418 9 ostream * 0 8576 9 ostream * 9 ostream * 0 0 395 0 0 0 0 0 0 0 0 0 0
+
+419 15 HTTPEntityTag * 0 8576 15 HTTPEntityTag * 15 HTTPEntityTag * 0 0 386 0 0 0 0 0 0 0 0 0 0
+
+420 21 HTTPEntityTag const * 0 8576 21 HTTPEntityTag const * 21 HTTPEntityTag const * 0 0 421 0 0 0 0 0 0 0 0 0 0
+
+421 19 HTTPEntityTag const 0 8832 19 HTTPEntityTag const 19 HTTPEntityTag const 0 0 386 0 0 0 0 0 0 0 0 0 0
+
+422 10 HTTPDate * 0 8576 10 HTTPDate * 10 HTTPDate * 0 0 387 0 0 0 0 0 0 0 0 0 0
+
+423 16 HTTPDate const * 0 8576 16 HTTPDate const * 16 HTTPDate const * 0 0 424 0 0 0 0 0 0 0 0 0 0
+
+424 14 HTTPDate const 0 8832 14 HTTPDate const 14 HTTPDate const 0 0 387 0 0 0 0 0 0 0 0 0 0
+
+425 14 DocumentSpec * 0 8576 14 DocumentSpec * 14 DocumentSpec * 0 0 388 0 0 0 0 0 0 0 0 0 0
+
+426 20 DocumentSpec const * 0 8576 20 DocumentSpec const * 20 DocumentSpec const * 0 0 427 0 0 0 0 0 0 0 0 0 0
+
+427 18 DocumentSpec const 0 8832 18 DocumentSpec const 18 DocumentSpec const 0 0 388 0 0 0 0 0 0 0 0 0 0
+
+428 12 DownloadDb * 0 8576 12 DownloadDb * 12 DownloadDb * 0 0 391 0 0 0 0 0 0 0 0 0 0
+
+429 10 Filename * 0 8576 10 Filename * 10 Filename * 0 0 401 0 0 0 0 0 0 0 0 0 0
+
+430 18 DownloadDb const * 0 8576 18 DownloadDb const * 18 DownloadDb const * 0 0 431 0 0 0 0 0 0 0 0 0 0
+
+431 16 DownloadDb const 0 8832 16 DownloadDb const 16 DownloadDb const 0 0 391 0 0 0 0 0 0 0 0 0 0
+
+432 7 HashVal 0 2048 7 HashVal 7 HashVal 0 0 0 0 0 0 0 0 0 0 0 0 292
+////////////////////////////////////////////////////////////////////
+//       Class : HashVal
+// Description : Stores a 128-bit value that represents the hashed
+//               contents (typically MD5) of a file or buffer.
+////////////////////////////////////////////////////////////////////
+
+433 9 HashVal * 0 8576 9 HashVal * 9 HashVal * 0 0 432 0 0 0 0 0 0 0 0 0 0
+
+434 2 Db 0 1312768 14 DownloadDb::Db 14 DownloadDb::Db 391 0 0 0 0 0 0 0 0 0 0 0 0
+
+435 4 Db * 0 8576 16 DownloadDb::Db * 16 DownloadDb::Db * 0 0 434 0 0 0 0 0 0 0 0 0 0
+
+436 15 HashVal const * 0 8576 15 HashVal const * 15 HashVal const * 0 0 437 0 0 0 0 0 0 0 0 0 0
+
+437 13 HashVal const 0 8832 13 HashVal const 13 HashVal const 0 0 432 0 0 0 0 0 0 0 0 0 0
+
+438 11 Extractor * 0 8576 11 Extractor * 11 Extractor * 0 0 393 0 0 0 0 0 0 0 0 0 0
+
+439 17 Extractor const * 0 8576 17 Extractor const * 17 Extractor const * 0 0 440 0 0 0 0 0 0 0 0 0 0
+
+440 15 Extractor const 0 8832 15 Extractor const 15 Extractor const 0 0 393 0 0 0 0 0 0 0 0 0 0
+
+441 17 MultiplexStream * 0 8576 17 MultiplexStream * 17 MultiplexStream * 0 0 394 0 0 0 0 0 0 0 0 0 0
+
+442 6 FILE * 0 8576 6 FILE * 6 FILE * 0 0 443 0 0 0 0 0 0 0 0 0 0
+
+443 4 FILE 0 1024 4 FILE 4 FILE 0 0 0 0 0 0 0 0 0 0 0 0 0
+
+444 14 StringStream * 0 8576 14 StringStream * 14 StringStream * 0 0 396 0 0 0 0 0 0 0 0 0 0
+
+445 25 vector< unsigned char > * 0 8576 25 vector< unsigned char > * 25 vector< unsigned char > * 0 0 446 0 0 0 0 0 0 0 0 0 0
+
+446 12 vector_uchar 0 2048 23 vector< unsigned char > 23 vector< unsigned char > 0 0 0 0 0 0 0 0 0 0 0 0 0
+
+447 17 unsigned long int 0 8214 17 unsigned long int 17 unsigned long int 0 1 0 0 0 0 0 0 0 0 0 0 0
+
+448 6 string 0 2048 20 basic_string< char > 20 basic_string< char > 0 0 0 0 0 0 0 0 0 0 0 0 0
+
+0
+0
+0
